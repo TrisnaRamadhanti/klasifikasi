@@ -39,13 +39,13 @@
                     
                   </td>
                   <td>
-                    <a href="">{{ data.nama_prodi }}</a>
+                    <a href="{% url 'home:detail' data.pk %}">{{ data.nama_prodi }}</a>
                   </td>
                   <td>
-                    <a href="">{{ data.tahun_smstr }}</a>
+                    <a href="{% url 'home:detail' data.pk %}">{{ data.tahun_smstr }}</a>
                   </td>
                   <td>
-                    <a href="">{{ data.label_kelas }}</a>
+                    <a href="{% url 'home:detail' data.pk %}">{{ data.label_kelas }}</a>
                   </td>
                   <td>
                         <a href="{% url 'home:edit' data.pk %}">

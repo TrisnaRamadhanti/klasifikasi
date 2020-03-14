@@ -161,6 +161,7 @@
       <div class="row">
         <div class="col">
           <div class="card shadow">
+
             <div class="card-header border-0">
               <a class="btn btn-primary" href="{% url 'home:create' %}">
                 Tambah
@@ -169,7 +170,7 @@
 
             <div class="table-responsive">
  
-            <!-- Tabel Data Transportasi -->
+              <!-- Tabel Data Transportasi -->
 
               <table class="table align-items-center table-flush">
                 <thead>
@@ -182,36 +183,33 @@
                 <tbody>
                 {% for data in data_list %}
                 <tr>
-                <td>
-
-                    </a>
-              </td>
-              <td>
-              <a href="">
-              {{ data.nama_prodi }}
-              </a>
-              </td>
-              <td>
-              <a href="">
-              {{ data.tahun_smstr }}
-              </a>
-              </td>
-              <td>
-             {{ data.label_kelas }}
-              </a>
-              </td>
                   <td>
-                       <a href="{% url 'home:edit' data.pk %}">
-                        <img src="{% static 'Gambar/icon/edit.png' %} " title='edit'  width="10%" height="25%" >
-                        </a>
-                        <a href="{% url 'home:delete' data.pk %}">
-                        <img src="{% static 'Gambar/icon/hapus.png' %} " title='hapus'  width="10%" height="25%" >
+                    </a>
+                  </td>
+                  <td>
+                    <a href="">{{ data.nama_prodi }}</a>
+                  </td>
+                  <td>
+                    <a href="">{{ data.tahun_smstr }}</a>
+                  </td>
+                  <td>
+                    <a href="">{{ data.label_kelas }}</a>
+                  </td>
+                  <td>
+                    <a href="{% url 'home:edit' data.pk %}">
+                      <img src="{% static 'Gambar/icon/edit.png' %} " title='edit'  width="10%" height="25%">
+                    </a>
+                    <a href="{% url 'home:delete' data.pk %}">
+                      <img src="{% static 'Gambar/icon/hapus.png' %} " title='hapus'  width="10%" height="25%">
+                    </a>
                 </tr>
+                {% endfor %}
                 </tbody>
-          </table>
-          {% endfor %}
+            </table>
         </div>      
         </div>
-
+        </div>
+      </div>
+    </div>
 </body>
 </html>

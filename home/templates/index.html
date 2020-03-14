@@ -35,7 +35,6 @@
                 <tbody>
                 {% for data in data_list %}
                 <tr>
-<<<<<<< HEAD
                   <td>
                     
                   </td>
@@ -63,34 +62,6 @@
             </div>      
           </div>
         </div>
-=======
-                  <td>
-                    </a>
-                  </td>
-                  <td>
-                    <a href="">{{ data.nama_prodi }}</a>
-                  </td>
-                  <td>
-                    <a href="">{{ data.tahun_smstr }}</a>
-                  </td>
-                  <td>
-                    <a href="">{{ data.label_kelas }}</a>
-                  </td>
-                  <td>
-                    <a href="{% url 'home:edit' data.pk %}">
-                      <img src="{% static 'Gambar/icon/edit.png' %} " title='edit'  width="10%" height="25%">
-                    </a>
-                    <a href="{% url 'home:delete' data.pk %}">
-                      <img src="{% static 'Gambar/icon/hapus.png' %} " title='hapus'  width="10%" height="25%">
-                    </a>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>      
-        </div>
-        </div>
->>>>>>> 3ead50488b80deb476f52e35afbfd2bca42950a6
       </div>
     </div>
 </body>

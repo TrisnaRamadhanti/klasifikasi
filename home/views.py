@@ -29,8 +29,8 @@ def create(request):
 
 
 def edit(request, pk, template_name='edit.html'):
-    contact = get_object_or_404(Data, pk=pk)
-    form = DataForm(request.POST or None)
+    data = get_object_or_404(Data, pk=pk)
+    form = DataForm(request.POST or None, instance=data)
     if form.is_valid():
         form.save()
         return redirect('home:home_view')

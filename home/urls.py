@@ -20,7 +20,8 @@ from home import views
 app_name = 'home'
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='home_view'),
+    path('', views.Beranda, name='home_view'),
+    path('dataLatih/', views.DataLatih.as_view(), name='data_view'),
     path('<int:pk>/', views.DataDetailView.as_view(), name='detail'),
     path('edit/<int:pk>/', views.edit, name='edit'),
     path('create/', views.create, name='create'),

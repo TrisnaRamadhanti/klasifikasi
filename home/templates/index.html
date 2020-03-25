@@ -1,10 +1,10 @@
-{% extends 'header.html' %}
+{% extends 'header home.html' %}
 {% load static %}
 {% block content %}
 <html>  
 <body>
      
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-4"> </div>
+    <div class="header bg-green pb-8 pt-5 pt-md-4"> </div>
           
     <!-- Page content -->
     <div class="container-fluid mt--7">
@@ -15,50 +15,17 @@
           <div class="card shadow">
 
             <div class="card-header border-0">
-              <a class="btn btn-primary" href="{% url 'home:create' %}">
-                Tambah
-              </a>
+             <h1> SELAMAT DATANG ! </h1>
+             <br>
+             <br>
+             <br>
             </div>
 
             <div class="table-responsive">
  
               <!-- Tabel Data Transportasi -->
 
-              <table class="table align-items-center table-flush">
-                <thead>
-                  <th>NO</th>
-                  <th>Nama Program Studi</th>
-                  <th>Tahun Semester</th>
-                  <th>Label Kelas</th>
-                  <th>Aksi</th>
-                </thead>
-                <tbody>
-                {% for data in data_list %}
-                <tr>
-                  <td>
-                    
-                  </td>
-                  <td>
-                    <a href="{% url 'home:detail' data.pk %}">{{ data.nama_prodi }}</a>
-                  </td>
-                  <td>
-                    <a href="{% url 'home:detail' data.pk %}">{{ data.tahun_smstr }}</a>
-                  </td>
-                  <td>
-                    <a href="{% url 'home:detail' data.pk %}">{{ data.label_kelas }}</a>
-                  </td>
-                  <td>
-                        <a href="{% url 'home:edit' data.pk %}">
-                          <img src="{% static 'Gambar/icon/edit.png' %} " title='edit'  width="10%" height="25%" >
-                        </a>
-                        <a href="{% url 'home:delete' data.pk %}">
-                          <img src="{% static 'Gambar/icon/hapus.png' %} " title='hapus'  width="10%" height="25%" >
-                        </a>
-                  </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-              </table>
+              
             </div>      
           </div>
         </div>

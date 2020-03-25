@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-4"> </div>
+    <div class="header bg-green pb-8 pt-5 pt-md-4"> </div>
 
 
     <div class="container-fluid mt--7">
@@ -38,9 +38,9 @@
                         {% endif %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                  <a class="btn btn-primary" href="{% url 'home:home_view' %}">
-               KEMBALI
+                    <button type="submit" class="btn bg-green"><font color = "white">SIMPAN</button>
+                  <a class="btn bg-green" href="{% url 'home:data_view' %}"><font color = "white">
+               KEMBALI </font>
               </a>
                 </form>
         </div>

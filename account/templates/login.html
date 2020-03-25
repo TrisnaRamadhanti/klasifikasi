@@ -18,6 +18,9 @@
 <body>
     <div class="login-page">
         <div class="form">
+            <center><img src="{% static  'Gambar/logo.png' %} " width = "150px" height = "150px"/></center>
+            <br>
+            <br>
             <form class="login-form" method="post">
                 <!--<input type="text" placeholder="username"/>
                 <input type="password" placeholder="password"/>-->
@@ -46,7 +49,7 @@
                 {% endfor %}
 
                 <button type="submit">login</button>
-                <p class="message">Not registered? <a href="{% url 'account:signup_view' %}">Create an account</a></p>
+                
             </form>
         </div>
     </div>

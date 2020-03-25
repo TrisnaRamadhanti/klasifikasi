@@ -4,7 +4,7 @@ from .forms import DataForm
 from django.views.generic import ListView, DetailView
 
 
-class DataLatih(ListView):
+class DataLatih(ListView):    
     template_name = 'data-latih.html'
     context_object_name = 'data_list'
 
@@ -17,31 +17,43 @@ class DataDetailView(DetailView):
     template_name = 'data-detail.html'
 
 def Beranda(request):
-    return render(request, 'index.html')
+    if 'username' in request.session:
+        return render(request, 'index.html')
+    else:
+        return redirect('/login/')
 
 def create(request):
-    if request.method == 'POST':
-        form = DataForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home:data_view')
-    form = DataForm()
+    if 'username' in request.session:
+        if request.method == 'POST':
+            form = DataForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('home:data_view')
+        form = DataForm()
 
-    return render(request, 'create.html', {'form': form})
+        return render(request, 'create.html', {'form': form})
+    else:
+        return redirect('/login/')
 
 
 def edit(request, pk, template_name='edit.html'):
-    data = get_object_or_404(Data, pk=pk)
-    form = DataForm(request.POST or None, instance=data)
-    if form.is_valid():
-        form.save()
-        return redirect('home:data_view')
-    return render(request, template_name, {'form': form})
+    if 'username' in request.session:
+        data = get_object_or_404(Data, pk=pk)
+        form = DataForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('home:data_view')
+        return render(request, template_name, {'form': form})
+    else:
+         return redirect('/login/')
 
 
 def delete(request, pk, template_name='confirm_delete.html'):
-    contact = get_object_or_404(Data, pk=pk)
-    if request.method == 'POST':
-        contact.delete()
-        return redirect('home:data_view')
-    return render(request, template_name, {'object': contact})
+    if 'username' in request.session:
+        contact = get_object_or_404(Data, pk=pk)
+        if request.method == 'POST':
+            contact.delete()
+            return redirect('home:data_view')
+        return render(request, template_name, {'object': contact})
+    else:
+        return redirect('/login/')

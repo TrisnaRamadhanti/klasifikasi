@@ -135,7 +135,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">username</span>
+                  <span class="mb-0 text-sm  font-weight-bold">Hello, {{ request.session.username }}</span>
                 </div>
               </div>
             </a>
@@ -144,7 +144,7 @@
                 <h6 class="text-overflow m-0">Hello !</h6>
               </div>
               <div class="dropdown-divider"></div>
-              <a href="" class="dropdown-item">
+              <a href="{% url 'account:logout_view' %}" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>

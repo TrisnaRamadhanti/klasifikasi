@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView
 class IndexView(ListView):
     template_name = 'data-normalisasi.html'
     context_object_name = 'data'
+    _n_data_normalisasi = []
 
     def get_queryset(self):
         listdata = Data.objects.all()
@@ -84,6 +85,8 @@ class IndexView(ListView):
             n = (float(x) - minvalue['reratanilaidosen']) / (maxvalue['reratanilaidosen'] - minvalue['reratanilaidosen'])
             n_reratanilaidosen.append(n)
             n_data_normalisasi[i]['reratanilaidosen'] = float(n)
+
+        self._n_data_normalisasi = n_data_normalisasi
 
         # End Normalisasi
 

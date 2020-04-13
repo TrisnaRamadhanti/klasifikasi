@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path, include
-from home.views import view_data, view_normalisasi
+from django.urls import path
+from home.views import view_data, view_normalisasi, view_naivebayes
 
 app_name = 'home'
 
@@ -28,4 +28,5 @@ urlpatterns = [
     path('delete/<int:pk>/', view_data.delete, name='delete'),
 
     path('normalisasi/', view_normalisasi.IndexView.as_view(), name='normalisasi'),
+    path('naivebayes/', view_naivebayes.IndexView.as_view(), name='naivebayes')
 ]

@@ -9,45 +9,253 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
 
-      <!-- Table -->
+      <!-- Table Peluang Nilai Prior -->
       <div class="row">
         <div class="col">
           <div class="card shadow">
 
             <div class="card-header border-0">
-
+              <h3>Peluang Nilai Prior</h3>
             </div>
 
             <div class="table-responsive">
-
               <table class="table align-items-center table-flush">
                 <thead>
                   <tr>
-                    <th><b>No</b></th>
                     <th><b>Label</b></th>
                     <th><b>Peluang</b></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for data in data.n_data_normalisasi %}
                   <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ data.namaprodi }}</td>
-                    <td>{{ data.peminatprodi }}</td>
-                    <td>{{ data.rerataipk }}</td>
-                    <td>{{ data.kelulusan }}</td>
-                    <td>{{ data.jamkehadirandosen }}</td>
-                    <td>{{ data.reratanilaidosen }}</td>
-                    <td>{{ data.label }}</td>
+                    <td>Berkembang</td>
+                    <td>{{ data.data_peluang.p1 }}</td>
                   </tr>
-                  {% endfor %}
+                  <tr>
+                    <td>Belum Berkembang</td>
+                    <td>{{ data.data_peluang.p2 }}</td>
+                  </tr>
                 </tbody>
               </table>
+            </div>
 
-            </div>      
           </div>
         </div>
       </div>
+
+      <br/>
+      <br/>
+
+      <!-- Table Nilai Mean -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+
+            <div class="card-header border-0">
+              <h3>Nilai Mean</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead>
+                  <tr>
+                    <th><b>Kelas</b></th>
+                    <th><b>Peminat Prodi</b></th>
+                    <th><b>Rerata IPK</b></th>
+                    <th><b>Jumlah Lulusan</b></th>
+                    <th><b>Jam Kehadiran Dosen</b></th>
+                    <th><b>Nilai Dosen</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Berkembang</td>
+                    <td>{{ data.data_mean.mean_1.peminatprodi }}</td>
+                    <td>{{ data.data_mean.mean_1.rerataipk }}</td>
+                    <td>{{ data.data_mean.mean_1.kelulusan }}</td>
+                    <td>{{ data.data_mean.mean_1.jamkehadirandosen }}</td>
+                    <td>{{ data.data_mean.mean_1.reratanilaidosen }}</td>
+                  </tr>
+                  <tr>
+                    <td>Belum Berkembang</td>
+                    <td>{{ data.data_mean.mean_2.peminatprodi }}</td>
+                    <td>{{ data.data_mean.mean_2.rerataipk }}</td>
+                    <td>{{ data.data_mean.mean_2.kelulusan }}</td>
+                    <td>{{ data.data_mean.mean_2.jamkehadirandosen }}</td>
+                    <td>{{ data.data_mean.mean_2.reratanilaidosen }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <!-- Table Standar Deviasi -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+
+            <div class="card-header border-0">
+              <h3>Standar Deviasi</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead>
+                  <tr>
+                    <th><b>Kelas</b></th>
+                    <th><b>Peminat Prodi</b></th>
+                    <th><b>Rerata IPK</b></th>
+                    <th><b>Jumlah Lulusan</b></th>
+                    <th><b>Jam Kehadiran Dosen</b></th>
+                    <th><b>Nilai Dosen</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Berkembang</td>
+                    <td>{{ data.data_std_deviasi.std_dev_1.peminatprodi }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_1.rerataipk }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_1.kelulusan }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_1.jamkehadirandosen }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_1.reratanilaidosen }}</td>
+                  </tr>
+                  <tr>
+                    <td>Belum Berkembang</td>
+                    <td>{{ data.data_std_deviasi.std_dev_2.peminatprodi }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_2.rerataipk }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_2.kelulusan }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_2.jamkehadirandosen }}</td>
+                    <td>{{ data.data_std_deviasi.std_dev_2.reratanilaidosen }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <!-- Table Gaussian -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+
+            <div class="card-header border-0">
+              <h3>Gaussian</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead>
+                  <tr>
+                    <th><b>Kelas</b></th>
+                    <th><b>Peminat Prodi</b></th>
+                    <th><b>Rerata IPK</b></th>
+                    <th><b>Jumlah Lulusan</b></th>
+                    <th><b>Jam Kehadiran Dosen</b></th>
+                    <th><b>Nilai Dosen</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Berkembang</td>
+                    <td>{{ data.data_gaussian.gaussian_1.peminatprodi }}</td>
+                    <td>{{ data.data_gaussian.gaussian_1.rerataipk }}</td>
+                    <td>{{ data.data_gaussian.gaussian_1.kelulusan }}</td>
+                    <td>{{ data.data_gaussian.gaussian_1.jamkehadirandosen }}</td>
+                    <td>{{ data.data_gaussian.gaussian_1.reratanilaidosen }}</td>
+                  </tr>
+                  <tr>
+                    <td>Belum Berkembang</td>
+                    <td>{{ data.data_gaussian.gaussian_2.peminatprodi }}</td>
+                    <td>{{ data.data_gaussian.gaussian_2.rerataipk }}</td>
+                    <td>{{ data.data_gaussian.gaussian_2.kelulusan }}</td>
+                    <td>{{ data.data_gaussian.gaussian_2.jamkehadirandosen }}</td>
+                    <td>{{ data.data_gaussian.gaussian_2.reratanilaidosen }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <!-- Table Peluang Posterior -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+
+            <div class="card-header border-0">
+              <h3>Nilai Peluang Posterior</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead>
+                  <tr>
+                    <th><b>Kelas</b></th>
+                    <th><b>Nilai</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Berkembang</td>
+                    <td>{{ data.data_prob_posterior.prob_posterior_1 }}</td>
+                  </tr>
+                  <tr>
+                    <td>Belum Berkembang</td>
+                    <td>{{ data.data_prob_posterior.prob_posterior_2 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <!-- Table Hasil -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+
+            <div class="card-header border-0">
+              <h3>Hasil</h3>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <tbody>
+                  <tr>
+                    <td><h3><b>{{ data.result }}</b></h3></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
     </div>
 
 {% endblock %}

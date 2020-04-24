@@ -23,8 +23,8 @@ def get_kernel():
 
             k = math.exp((-(n1 + n2 + n3 + n4 + n5)) / (2 * (math.pow(s, 2))))
 
-            if j == 0:
-                n_data_kernel_view.append(x['namaprodi'])
+            # if j == 0:
+            #     n_data_kernel_view.append(x['namaprodi'])
 
             n_data_kernel_view.append(k)
             n_data_kernel.append(k)

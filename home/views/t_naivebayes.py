@@ -199,4 +199,9 @@ def _get_result(data_prob_posterior):
 
     result = max(data_prob_posterior['prob_posterior_1'], data_prob_posterior['prob_posterior_2'])
 
-    return result
+    if data_prob_posterior['prob_posterior_1'] > data_prob_posterior['prob_posterior_2']:
+        pesan = 'Berkembang'
+    else:
+        pesan = 'Belum Berkembang'
+
+    return result, pesan

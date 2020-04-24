@@ -1,6 +1,5 @@
 from django.views.generic import ListView
 from home.views import normalisasi
-from home.views import kernel
 
 
 class IndexView(ListView):
@@ -9,11 +8,9 @@ class IndexView(ListView):
 
     def get_queryset(self):
         n_data_normalisasi = normalisasi.get_normalisasi()['n_data_normalisasi']
-        # n_list_data_kernel_view = kernel.get_kernel()['n_list_data_kernel_view']
 
         context = {
-            'n_data_normalisasi': n_data_normalisasi,
-            # 'n_list_data_kernel_view': n_list_data_kernel_view
+            'n_data_normalisasi': n_data_normalisasi
         }
 
         return context

@@ -32,17 +32,17 @@
                   <tbody>
                   {% for datax in data.n_list_data_kernel_view %}
                       <tr class="tr-shadow">
+                          <td><b> {{ forloop.counter }} </b></td>
                       {% for datay in datax %}
-                          <td>{{ datay }}</td>
+                          <td> {{ datay }} </td>
                       {% endfor %}
                       </tr>
                       <tr class="spacer"></tr>
                   {% endfor %}
                   </tbody>
               </table>
-              </table>
 
-            </div>      
+            </div>
           </div>
         </div>
       </div>

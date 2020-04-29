@@ -1,4 +1,5 @@
 from home.models import Data
+import logging
 
 
 def get_normalisasi():

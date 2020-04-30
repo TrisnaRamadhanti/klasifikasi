@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report, confusion_matrix
 from home.models import Data
 import logging
 
@@ -32,18 +34,26 @@ def calculate_naivebayes():
     y_train = y
     y_test = y.iloc[[0]]
 
-    modelnb = GaussianNB()
+    scaler = StandardScaler()
+    scaler.fit(x_train)
 
+    x_train = scaler.transform(x_train)
+    x_test = scaler.transform(x_test)
+
+    modelnb = GaussianNB()
     nbtrain = modelnb.fit(x_train, y_train)
 
-    p = nbtrain.predict_proba(x_test)
+    predictions_prob = nbtrain.predict_proba(x_test)
 
-    y_pred = nbtrain.predict(x_test)
+    predictions = nbtrain.predict(x_test)
 
     print(x)
     print(x_train)
     print(x_test)
     print(y_train)
     print(y_test)
-    print(p)
-    print(y_pred)
+    print(predictions_prob)
+    print(predictions)
+
+    print(confusion_matrix(y_test, predictions))
+    print(classification_report(y_test, predictions))

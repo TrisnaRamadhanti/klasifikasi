@@ -28,7 +28,7 @@ def calculate_naivebayes():
     x = df
 
     # Jika ingin ambil data training dan test secara acak
-    # x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=123)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=123)
 
     # Membuat variabel baru yang menyimpan data training
     x_train = x

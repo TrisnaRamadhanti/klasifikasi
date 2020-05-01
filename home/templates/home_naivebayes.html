@@ -10,77 +10,89 @@
     <div class="container-fluid mt--7">
 
 
-      <!-- Table Nilai Mean -->
+     <!-- Table -->
+     <div class="row">
+      <div class="col">
+        <div class="card shadow">
+
+          <div class="card-header border-0">
+
+          </div>
+
+          <div class="table-responsive">
+
+            <table class="table align-items-center table-flush">
+              <tbody>
+                <tr>
+                  <td> {{data.data_training}} </td>
+                </tr>
+              </tbody>
+            </table>
+
+           </div>      
+         </div>
+        </div>
+     </div>
+   
+   
+
+      <br/>
+      <br/>
+
+      <!-- Table Probalitas -->
+     <div class="row">
+      <div class="col">
+        <div class="card shadow">
+
+          <div class="card-header border-0">
+            <h3>Nilai Probalitas</h3>
+          </div>
+
+          <div class="table-responsive">
+
+            <table class="table align-items-center table-flush">
+              <tbody>
+                <tr>
+                  <td> {{data.probalitas}} </td>
+                </tr>
+              </tbody>
+            </table>
+
+           </div>      
+         </div>
+        </div>
+     </div>
+  
+
+   <br/>
+   <br/>
+
+      <!-- Table Probalitas -->
       <div class="row">
-        <div class="col">
-          <div class="card shadow">
+      <div class="col">
+        <div class="card shadow">
 
-            <div class="card-header border-0">
-              <h3>Data Testing</h3>
-            </div>
+          <div class="card-header border-0">
+            <h3>Nilai Probalitas</h3>
+          </div>
 
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead>
-                  <tr>
-                    <th><b>Peminat Prodi</b></th>
-                    <th><b>Rerata IPK</b></th>
-                    <th><b>Jumlah Lulusan</b></th>
-                    <th><b>Rata-Rata Jam Kehadiran Dosen</b></th>
-                    <th><b>Rata-Rata Nilai Dosen</b></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{ data.data_testing.peminat_prodi }}</td>
-                    <td>{{ data.data_testing.rerata_ipk }}</td>
-                    <td>{{ data.data_testing.kelulusan }}</td>
-                    <td>{{ data.data_testing.jam_kehadiran_dosen }}</td>
-                    <td>{{ data.data_testing.rerata_nilai_dosen }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="table-responsive">
 
+            <table class="table align-items-center table-flush">
+              <tbody>
+                <tr>
+                  <td> {{data.report}} </td>
+                </tr>
+              </tbody>
+            </table>
+
+            </div>      
           </div>
         </div>
       </div>
-
-      <br/>
-      <br/>
-
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
-
-            <div class="card-header border-0">
-              <h3>Hasil Peluang Posterior</h3>
-            </div>
-
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <tbody>
-                  <tr>
-                    <td>{{ data.probalitas }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-
-     
-
-          </div>
-        </div>
-      </div>
-
-      <br/>
-      <br/>
-
     </div>
+      
+
+
 
 {% endblock %}

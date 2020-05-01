@@ -29,18 +29,19 @@ def calculate_naivebayes():
 
     # Jika ingin ambil data training dan test secara acak
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=123)
+    
 
     # Membuat variabel baru yang menyimpan data training
-    x_train = x
+    # x_train = x
 
     # Data testing
-    x_test = x.iloc[[0]]
+    # x_test = x.iloc[[0]]
 
     # Variabel untuk menyimpan label data training
-    y_train = y
+    # y_train = y
 
     # Variabel untuk menyimpan label dari data testing
-    y_test = y.iloc[[0]]
+    # y_test = y.iloc[[0]]
 
     scaler = StandardScaler()
     scaler.fit(x_train)
@@ -55,36 +56,49 @@ def calculate_naivebayes():
 
     predictions = nbtrain.predict(x_test)
 
+    print('Data Training: ')
     print(x)
     print("-----------------------")
+    print('Normalisasi Data Training')
     print(x_train)
     print("-----------------------")
+    print('Normalisasi Data Testing')
     print(x_test)
     print("-----------------------")
+    print('Label Data Training')
     print(y_train)
     print("-----------------------")
+    print('Label Data Testing')
     print(y_test)
     print("-----------------------")
+    print('Prediksi Probalitas')
     print(predictions_prob)
     print("-----------------------")
+    print('Prediksi')
     print(predictions)
     print("-----------------------")
 
-    print(confusion_matrix(y_test, predictions))
-    print(classification_report(y_test, predictions))
+    confusion = confusion_matrix(y_test, predictions)
+    classification = classification_report(y_test, predictions)
 
-    if predictions == 1:
-        print('Berkembang'),
-        pesan = 'Berkembang'
-    else:
-        print('Belum Berkembang')
-        pesan = 'Belum Berkembang'
+    print(confusion)
+    print(classification)
+
+    # if predictions == 1:
+    #     print('Berkembang'),
+    #     pesan = 'Berkembang'
+    # else:
+    #     print('Belum Berkembang')
+    #     pesan = 'Belum Berkembang'
 
     data_naive_bayes = {
+        'data_training': x_train,
         'data_testing': x_test,
         'probalitas': predictions_prob,
         'prediksi': predictions,
-        'pesan': pesan
+        'confusion': confusion,
+        'report': classification
+        # 'pesan': pesan
     }
 
     return data_naive_bayes

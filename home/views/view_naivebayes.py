@@ -8,15 +8,21 @@ class IndexView(ListView):
 
     def get_queryset(self):
         data_testing = m_naivebayes.calculate_naivebayes()['data_testing']
+        data_training = m_naivebayes.calculate_naivebayes()['data_training']
         probalitas = m_naivebayes.calculate_naivebayes()['probalitas']
         prediksi = m_naivebayes.calculate_naivebayes()['prediksi']
-        pesan = m_naivebayes.calculate_naivebayes()['pesan']
+        #pesan = m_naivebayes.calculate_naivebayes()['pesan']
+        confussion = m_naivebayes.calculate_naivebayes()['confusion']
+        report = m_naivebayes.calculate_naivebayes()['report']
 
         context = {
             'data_testing': data_testing,
+            'data_training': data_training,
             'probalitas': probalitas,
             'prediksi': prediksi,
-            'pesan': pesan
+            #'pesan': pesan,
+            'confussion': confussion,
+            'report': report
         }
 
 

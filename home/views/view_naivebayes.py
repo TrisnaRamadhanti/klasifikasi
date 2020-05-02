@@ -2,29 +2,32 @@ from django.views.generic import ListView
 from home.views import t_naivebayes
 from home.views import m_naivebayes
 
+
 class IndexView(ListView):
     template_name = 'home_naivebayes.html'
     context_object_name = 'data'
 
     def get_queryset(self):
-        data_testing = m_naivebayes.calculate_naivebayes()['data_testing']
-        data_training = m_naivebayes.calculate_naivebayes()['data_training']
-        probalitas = m_naivebayes.calculate_naivebayes()['probalitas']
-        prediksi = m_naivebayes.calculate_naivebayes()['prediksi']
-        #pesan = m_naivebayes.calculate_naivebayes()['pesan']
-        confussion = m_naivebayes.calculate_naivebayes()['confusion']
-        report = m_naivebayes.calculate_naivebayes()['report']
+
+        naivebayes = m_naivebayes.calculate_naivebayes()
+
+        data_training = naivebayes['data_training']
+        data_testing = naivebayes['data_testing']
+        probalitas = naivebayes['probalitas']
+        prediksi = naivebayes['prediksi']
+        # pesan = naivebayes['pesan']
+        confussion = naivebayes['confusion']
+        report = naivebayes['report']
 
         context = {
             'data_testing': data_testing,
             'data_training': data_training,
             'probalitas': probalitas,
             'prediksi': prediksi,
-            #'pesan': pesan,
+            # 'pesan': pesan,
             'confussion': confussion,
             'report': report
         }
-
 
         # data_peluang = t_naivebayes.calculate_naivebayes()['data_peluang']
         # data_mean = t_naivebayes.calculate_naivebayes()['data_mean']

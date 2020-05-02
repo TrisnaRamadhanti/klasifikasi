@@ -12,7 +12,6 @@ def calculate_naivebayes():
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 
-
     df['label_kelas'] = df['label_kelas'].apply(lambda l: 1 if l == 'Berkembang' else -1)
 
     y = df['label_kelas']
@@ -29,7 +28,6 @@ def calculate_naivebayes():
 
     # Jika ingin ambil data training dan test secara acak
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=123)
-    
 
     # Membuat variabel baru yang menyimpan data training
     # x_train = x
@@ -50,11 +48,11 @@ def calculate_naivebayes():
     x_test = scaler.transform(x_test)
 
     modelnb = GaussianNB()
-    nbtrain = modelnb.fit(x_train, y_train)
+    modelnb.fit(x_train, y_train)
 
-    predictions_prob = nbtrain.predict_proba(x_test)
+    predictions_prob = modelnb.predict_proba(x_test)
 
-    predictions = nbtrain.predict(x_test)
+    predictions = modelnb.predict(x_test)
 
     print('Data Training: ')
     print(x)
@@ -71,7 +69,7 @@ def calculate_naivebayes():
     print('Label Data Testing')
     print(y_test)
     print("-----------------------")
-    print('Prediksi Probalitas')
+    print('Prediksi Probabilitas')
     print(predictions_prob)
     print("-----------------------")
     print('Prediksi')

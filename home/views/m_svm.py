@@ -5,11 +5,13 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import KFold
+from sklearn.svm import SVC
+
 from home.models import Data
 import logging
 
 
-def calculate_naivebayes():
+def calculate_svm():
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 
@@ -38,12 +40,12 @@ def calculate_naivebayes():
     x_train = scaler.transform(x_train)
     x_test = scaler.transform(x_test)
 
-    modelnb = GaussianNB()
-    modelnb.fit(x_train, y_train)
+    svclassifier = SVC(kernel='rbf')
+    svclassifier.fit(x_train, y_train)
 
-    predictions_prob = modelnb.predict_proba(x_test)
+    predictions_prob = svclassifier.predict_proba(x_test)
 
-    predictions = modelnb.predict(x_test)
+    predictions = svclassifier.predict(x_test)
 
     print('Data Training: ')
     print(x)
@@ -90,7 +92,7 @@ def calculate_naivebayes():
 
     x = scaler.transform(x)
 
-    modelnb = GaussianNB()
+    svclassifier = SVC(kernel='rbf')
 
     # Cara 1
     scores = []
@@ -100,12 +102,12 @@ def calculate_naivebayes():
         print("Test Index: ", test_index)
 
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
-        modelnb.fit(x_train, y_train)
+        svclassifier.fit(x_train, y_train)
 
-        predictions = modelnb.predict(x_test)
+        predictions = svclassifier.predict(x_test)
         print("Predictions: ", predictions)
 
-        scores.append(modelnb.score(x_test, y_test))
+        scores.append(svclassifier.score(x_test, y_test))
 
     # Cara 2
     # kfold_scores = cross_val_score(modelnb, x, y, cv=2)

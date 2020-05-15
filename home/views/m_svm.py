@@ -96,7 +96,7 @@ def calculate_svm():
 
     # Cara 1
     scores = []
-    cv = StratifiedKFold(n_splits=2)
+    cv = StratifiedKFold(n_splits=5)
     for train_index, test_index in cv.split(x, y):
         print("Train Index: ", train_index)
         print("Test Index: ", test_index)

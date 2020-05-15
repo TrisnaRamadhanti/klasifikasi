@@ -29,7 +29,8 @@ class IndexView(ListView):
             form = TrainingSvmSeqForm()
 
         context = {
-            'score': 0,
+            'scores': [],
+            'scores_mean': 0,
             'display': 'none',
             'form': form
         }
@@ -63,10 +64,12 @@ class IndexView(ListView):
             param.save()
 
             data_training = m_svm.calculate_svm(constant, iterasi, gamma, k_fold)
-            score = data_training['score']
+            scores = data_training['scores']
+            scores_mean = data_training['scores_mean']
 
             context = {
-                'score': score,
+                'scores': scores,
+                'scores_mean': scores_mean,
                 'display': 'block',
                 'form': form
             }
@@ -74,7 +77,8 @@ class IndexView(ListView):
             return render(request, self.template_name, {self.context_object_name: context})
         else:
             context = {
-                'score': 0,
+                'scores': [],
+                'scores_mean': 0,
                 'display': 'none',
                 'form': form
             }

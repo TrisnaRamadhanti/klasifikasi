@@ -122,7 +122,8 @@ def calculate_svm(const, max_iterasi, gamma, split):
         'prediksi': predictions,
         'confusion': confusion,
         'report': classification,
-        'score': np.mean(scores),
+        'scores': scores,
+        'scores_mean': np.mean(scores),
         # 'pesan': pesan
     }
 

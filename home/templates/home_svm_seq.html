@@ -41,14 +41,46 @@
                 <br/>
                 <br/>
 
-                <div class="table-responsive" style="margin: 20px">
-                    <h3><b>Evaluasi Score</b></h3>
-                    <br>
-                    <h4><b>{{ data.score }}</b></h4>
+                <div class="col-md-12" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
+                    <div class="table-responsive">
+                        <h2 style="margin: 12px;"><b>Evaluasi Score</b></h2>
+                        <br/>
+                        <table class="table align-items-center table-flush">
+                            <thead>
+                            <tr>
+                                <th width="10%"><b>Iterasi</b></th>
+                                <th width="90%"><b>Score</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for data in data.scores %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ data }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <h4 style="margin: 12px;"><b>Rata-rata Scores:</b></h4>
+                        <h3 style="margin: 12px;"><b>{{ data.scores_mean }}</b></h3>
+                    </div>
                 </div>
+
+                <br/>
+                <br/>
+
             </div>
         </div>
     </div>
+
+    <br/>
+    <br/>
+
 </div>
 
 {% endblock %}

@@ -11,7 +11,7 @@ from home.models import Data
 import logging
 
 
-def calculate_svm():
+def calculate_svm(const, max_iterasi, gamma, split):
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 
@@ -40,7 +40,7 @@ def calculate_svm():
     x_train = scaler.transform(x_train)
     x_test = scaler.transform(x_test)
 
-    svclassifier = SVC(kernel='rbf')
+    svclassifier = SVC(kernel='rbf', C=const, max_iter=max_iterasi, gamma=gamma, probability=True)
     svclassifier.fit(x_train, y_train)
 
     predictions_prob = svclassifier.predict_proba(x_test)
@@ -92,20 +92,22 @@ def calculate_svm():
 
     x = scaler.transform(x)
 
-    svclassifier = SVC(kernel='rbf')
+    svclassifier = SVC(kernel='rbf', C=const, max_iter=max_iterasi, gamma=gamma, probability=True)
 
     # Cara 1
     scores = []
+<<<<<<< HEAD
     cv = StratifiedKFold(n_splits=5)
+=======
+    cv = StratifiedKFold(n_splits=split)
+>>>>>>> 7b05801a001944ef4f1e87db139ebbccea4447b9
     for train_index, test_index in cv.split(x, y):
-        print("Train Index: ", train_index)
-        print("Test Index: ", test_index)
 
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
         svclassifier.fit(x_train, y_train)
 
         predictions = svclassifier.predict(x_test)
-        print("Predictions: ", predictions)
+        # print("Predictions: ", predictions)
 
         scores.append(svclassifier.score(x_test, y_test))
 
@@ -114,17 +116,18 @@ def calculate_svm():
     # kfold_predict = cross_val_predict(modelnb, x, y, cv=2)
 
     print('Evaluasi Scores')
-    print(scores)
+    print(np.mean(scores))
     print("-----------------------")
 
-    data_naive_bayes = {
+    data_svm = {
         'data_training': x_train,
         'data_testing': x_test,
         'probalitas': predictions_prob,
         'prediksi': predictions,
         'confusion': confusion,
         'report': classification,
+        'score': np.mean(scores),
         # 'pesan': pesan
     }
 
-    return data_naive_bayes
+    return data_svm

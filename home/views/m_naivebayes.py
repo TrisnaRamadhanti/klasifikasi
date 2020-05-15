@@ -112,7 +112,7 @@ def calculate_naivebayes():
     # kfold_predict = cross_val_predict(modelnb, x, y, cv=2)
 
     print('Evaluasi Scores')
-    print(scores)
+    print(np.mean(scores))
     print("-----------------------")
 
     data_naive_bayes = {
@@ -122,6 +122,7 @@ def calculate_naivebayes():
         'prediksi': predictions,
         'confusion': confusion,
         'report': classification,
+        'score': np.mean(scores),
         # 'pesan': pesan
     }
 

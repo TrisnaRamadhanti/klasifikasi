@@ -96,7 +96,11 @@ def calculate_svm(const, max_iterasi, gamma, split):
 
     # Cara 1
     scores = []
+<<<<<<< HEAD
+    cv = StratifiedKFold(n_splits=5)
+=======
     cv = StratifiedKFold(n_splits=split)
+>>>>>>> 7b05801a001944ef4f1e87db139ebbccea4447b9
     for train_index, test_index in cv.split(x, y):
 
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]

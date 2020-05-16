@@ -9,7 +9,7 @@ from home.models import Data
 import logging
 
 
-def calculate_naivebayes():
+def calculate_naivebayes(split):
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 
@@ -94,10 +94,8 @@ def calculate_naivebayes():
 
     # Cara 1
     scores = []
-    cv = StratifiedKFold(n_splits=2)
+    cv = StratifiedKFold(n_splits=split)
     for train_index, test_index in cv.split(x, y):
-        print("Train Index: ", train_index)
-        print("Test Index: ", test_index)
 
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
         modelnb.fit(x_train, y_train)
@@ -122,7 +120,8 @@ def calculate_naivebayes():
         'prediksi': predictions,
         'confusion': confusion,
         'report': classification,
-        'score': np.mean(scores),
+        'scores': scores,
+        'scores_mean': np.mean(scores),
         # 'pesan': pesan
     }
 

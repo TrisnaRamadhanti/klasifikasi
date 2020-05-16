@@ -29,3 +29,11 @@ class TrainingSvmSeq(models.Model):
 
     def __str__(self):
         return self.id
+
+
+class TrainingNaiveBayes(models.Model):
+    id = models.IntegerField('id', primary_key=True)
+    k_fold = models.CharField('KFold (Split)', max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.id

@@ -11,7 +11,7 @@ from home.models import Data
 import logging
 
 
-def calculate_svm(const, max_iterasi, gamma, split):
+def calculate_svm_seq(const, max_iterasi, gamma, split):
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 

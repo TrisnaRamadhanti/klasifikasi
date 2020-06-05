@@ -31,6 +31,18 @@ class TrainingSvmSeqForm(forms.Form):
                              error_messages={'required': "Masukkan KFold (Split)"})
 
 
+class TrainingSvmSmoForm(forms.Form):
+    constant = forms.CharField(label='Constant', required=True, max_length=100,
+                               widget=TextInput(attrs={'type': 'number'}),
+                               error_messages={'required': "Constant"})
+    iterasi = forms.CharField(label='Iterasi', required=True, max_length=100,
+                              widget=TextInput(attrs={'type': 'number'}),
+                              error_messages={'required': "Iterasi"})
+    k_fold = forms.CharField(label='KFold (Split)', required=True, max_length=100,
+                             widget=TextInput(attrs={'type': 'number'}),
+                             error_messages={'required': "Masukkan KFold (Split)"})
+
+
 class TrainingNaiveBayesForm(forms.Form):
     k_fold = forms.CharField(label='KFold (Split)', required=True, max_length=100,
                              widget=TextInput(attrs={'type': 'number'}),

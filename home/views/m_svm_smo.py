@@ -38,7 +38,7 @@ def calculate_svm_smo(C, max_iter, split):
     x_test = scaler.transform(x_test)
 
     svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=0.001)
-    svm.fit(x_train, y_train)
+    svm.fit(np.array(x_train), np.array(y_train))
 
     # predictions_prob = svm.predict_proba(x_test)
 
@@ -96,7 +96,7 @@ def calculate_svm_smo(C, max_iter, split):
     cv = StratifiedKFold(n_splits=split, shuffle=True, random_state=42)
     for train_index, test_index in cv.split(x, y):
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
-        svm.fit(x_train, y_train)
+        svm.fit(np.array(x_train), np.array(y_train))
 
         predictions = svm.predict(x_test)
         # print("Predictions: ", predictions)

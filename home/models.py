@@ -35,6 +35,7 @@ class TrainingSvmSmo(models.Model):
     id = models.IntegerField('id', primary_key=True)
     constant = models.CharField('Constant', max_length=100, blank=True, null=True)
     iterasi = models.CharField('Iterasi', max_length=100, blank=True, null=True)
+    epsilon = models.CharField('Epsilon', max_length=100, blank=True, null=True)
     k_fold = models.CharField('KFold (Split)', max_length=100, blank=True, null=True)
 
     def __str__(self):

@@ -8,7 +8,7 @@ from home.models import Data
 from home.views.svm_smo import SVM
 
 
-def calculate_svm_smo(C, max_iter, split):
+def calculate_svm_smo(epsilon, C, max_iter, split):
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 
@@ -37,7 +37,7 @@ def calculate_svm_smo(C, max_iter, split):
     x_train = scaler.transform(x_train)
     x_test = scaler.transform(x_test)
 
-    svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=0.001)
+    svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=epsilon)
     svm.fit(np.array(x_train), np.array(y_train))
 
     # predictions_prob = svm.predict_proba(x_test)
@@ -89,7 +89,7 @@ def calculate_svm_smo(C, max_iter, split):
 
     x = scaler.transform(x)
 
-    svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=0.001)
+    svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=epsilon)
 
     # Cara 1
     scores = []

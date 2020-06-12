@@ -43,6 +43,43 @@
 
                 <div class="col-md-12" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
                     <div class="table-responsive">
+                        <h2 style="margin: 12px;"><b>Evaluasi Performa</b></h2>
+                        <br/>
+
+                        {% for data in data.data_evaluasi %}
+                        <h3 style="margin: 12px;"><b>Iterasi {{ forloop.counter }}</b></h3>
+                        <br/>
+                        <table class="table align-items-center table-flush">
+                            <thead>
+                            <tr>
+                                <th width="10%"><b>Label</b></th>
+                                <th width="30%"><b>Precision</b></th>
+                                <th width="30%"><b>Recall</b></th>
+                                <th width="30%"><b>F1-Score</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for dt in data %}
+                            <tr>
+                                <td>{{ dt.label }}</td>
+                                <td>{{ dt.precision }}</td>
+                                <td>{{ dt.recall }}</td>
+                                <td>{{ dt.f1_score }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endfor %}
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                    </div>
+
+                    <br />
+
+                    <div class="table-responsive">
                         <h2 style="margin: 12px;"><b>Evaluasi Score</b></h2>
                         <br/>
                         <table class="table align-items-center table-flush">

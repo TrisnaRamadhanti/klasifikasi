@@ -26,6 +26,7 @@ class IndexView(ListView):
         context = {
             'scores': [],
             'scores_mean': 0,
+            'data_evaluasi': [],
             'display': 'none',
             'form': form
         }
@@ -51,10 +52,12 @@ class IndexView(ListView):
             data_training = m_naivebayes.calculate_naivebayes(k_fold)
             scores = data_training['scores']
             scores_mean = data_training['scores_mean']
+            data_evaluasi = data_training['data_evaluasi']
 
             context = {
                 'scores': scores,
                 'scores_mean': scores_mean,
+                'data_evaluasi': data_evaluasi,
                 'display': 'block',
                 'form': form
             }
@@ -64,6 +67,7 @@ class IndexView(ListView):
             context = {
                 'scores': [],
                 'scores_mean': 0,
+                'data_evaluasi': [],
                 'display': 'none',
                 'form': form
             }

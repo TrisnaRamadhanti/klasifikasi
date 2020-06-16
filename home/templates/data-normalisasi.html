@@ -2,57 +2,61 @@
 {% load static %}
 {% block content %}
 
-    <div class="header bg-green pb-8 pt-5 pt-md-4">
+<div class="header bg-green pb-8 pt-5 pt-md-4"></div>
 
-    </div>
-          
-    <!-- Page content -->
-    <div class="container-fluid mt--7">
+<!-- Page content -->
+<div class="container-fluid mt--7">
 
-      <!-- Table -->
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
+  <br />
+  <br />
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
 
-            <div class="card-header border-0">
+        <div class="card-header border-0">
 
-            </div>
+        </div>
 
-            <div class="table-responsive">
+        <div class="table-responsive">
 
-              <table class="table align-items-center table-flush">
-                <thead>
-                  <tr>
-                    <th><b>No</b></th>
-                    <th><b>Nama Program Studi</b></th>
-                    <th><b>Peminat Prodi</b></th>
-                    <th><b>Rerata IPK</b></th>
-                    <th><b>Jumlah Lulusan</b></th>
-                    <th><b>Rata-Rata Jam Kehadiran Dosen</b></th>
-                    <th><b>Rata-Rata Nilai Dosen</b></th>
-                    <th><b>Label</b></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for data in data.n_data_normalisasi %}
-                  <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ data.namaprodi }}</td>
-                    <td>{{ data.peminatprodi }}</td>
-                    <td>{{ data.rerataipk }}</td>
-                    <td>{{ data.kelulusan }}</td>
-                    <td>{{ data.jamkehadirandosen }}</td>
-                    <td>{{ data.reratanilaidosen }}</td>
-                    <td>{{ data.label }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+          <table class="table align-items-center table-flush">
+            <thead>
+              <tr>
+                <th><b>No</b></th>
+                <th><b>Nama Program Studi</b></th>
+                <th><b>Peminat Prodi</b></th>
+                <th><b>Rerata IPK</b></th>
+                <th><b>Jumlah Lulusan</b></th>
+                <th><b>Rata-Rata Jam Kehadiran Dosen</b></th>
+                <th><b>Rata-Rata Nilai Dosen</b></th>
+                <th><b>Label</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in data.n_data_normalisasi %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ data.namaprodi }}</td>
+                <td>{{ data.peminatprodi }}</td>
+                <td>{{ data.rerataipk }}</td>
+                <td>{{ data.kelulusan }}</td>
+                <td>{{ data.jamkehadirandosen }}</td>
+                <td>{{ data.reratanilaidosen }}</td>
+                <td>{{ data.label }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
 
-            </div>      
-          </div>
         </div>
       </div>
     </div>
+  </div>
+  <br />
+  <br />
+
+</div>
+
+<div class="header bg-green pb-4 pt-5 pt-md-4"></div>
 
 {% endblock %}

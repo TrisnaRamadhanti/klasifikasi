@@ -1,104 +1,77 @@
-{% extends 'header.html' %}
+{% extends 'home_base.html' %}
 {% load static %}
 {% block content %}
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <ul class="list-group">
-        <li class="list-group-item ">
-            <a>No </a> : <a> {{ data.no }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>ppm CH4 </a> : <a> {{ data.ppm_ch4 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>ppm C2H4 </a> : <a> {{ data.ppm_c2h4 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>ppm C2H2 </a> : <a> {{ data.ppm_c2h2 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>%CH4 </a> : <a> {{ data.persen_ch4 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>%C2H4 </a> : <a> {{ data.persen_c2h4 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>%C2H2 </a> : <a> {{ data.persen_c2h2 }} </a>
-        </li>
-        <li class="list-group-item ">
-            <a>Fault </a> : <a> {{ data.fault }} </a>
-        </li>
-    </ul>
-</body>
-</html> -->
-<html>
-<body>
 
-    <div class="header bg-green pb-8 pt-5 pt-md-4"></div>
-          
-    <div class="container-fluid mt--7">
-      
-      <div class="row">
+<div class="header bg-green pb-8 pt-5 pt-md-4"></div>
+
+<div class="container-fluid mt--7">
+
+    <br/>
+    <br/>
+
+    <div class="row">
         <div class="col">
-        <div class="card shadow">
-            <div class="card-header border-0">
-            <div class="table-responsive">
-
-            <div class="container-fluid"><br>
-              <legend>
-              <font face = "Georgia"> Detail Data Perkembangan Prodi </font>
-              </legend><br>
-            <div class="content">
-            <div class="form-group">
-                <label for="deskripsi">Kode Program Studi</label>
-                <p>{{ data.kode_prodi }}</p>
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="table-responsive">
+                        <div class="container-fluid"><br>
+                            <legend>
+                                <font face = "Georgia"> Detail Data Perkembangan Prodi </font>
+                            </legend>
+                            <br>
+                            <div class="content">
+                                <div class="form-group">
+                                    <label for="deskripsi">Kode Program Studi</label>
+                                    <p>{{ data.kode_prodi }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi">Nama Program Studi</label>
+                                    <p>{{ data.nama_prodi }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Tahun Semester </label>
+                                    <p>{{ data.tahun_smstr }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Presentase Peminat Program Studi</label>
+                                    <p>{{ data.peminat_prodi }} % </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata IPK</label>
+                                    <p>{{ data.rerata_ipk }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Jumlah Lulusan</label>
+                                    <p>{{ data.kelulusan }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata Jumlah Kehadiran Dosen</label>
+                                    <p>{{ data.jam_kehadiran_dosen }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata Nilai Dosen</label>
+                                    <p>{{ data.rerata_nilai_dosen }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Label Kelas</label>
+                                    <p>{{ data.label_kelas }} </p>
+                                </div>
+                                <br />
+                                <br />
+                                <a class="btn bg-green" href="{% url 'home:data_view' %}"><font color = "white">Kembali</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="deskripsi">Nama Program Studi</label>
-                <p>{{ data.nama_prodi }}</p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Tahun Semester </label>
-                <p>{{ data.tahun_smstr }}</p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Presentase Peminat Program Studi</label>
-                <p>{{ data.peminat_prodi }} % </p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Rata-Rata IPK</label>
-                <p>{{ data.rerata_ipk }} </p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Jumlah Lulusan</label>
-                <p>{{ data.kelulusan }} </p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Rata-Rata Jumlah Kehadiran Dosen</label>
-                <p>{{ data.jam_kehadiran_dosen }} </p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Rata-Rata Nilai Dosen</label>
-                <p>{{ data.rerata_nilai_dosen }} </p>
-            </div>
-            <div class="form-group">
-                <label for="ID_admin">Label Kelas</label>
-                <p>{{ data.label_kelas }} </p>
-            </div>
-          
-          <a class="btn bg-green" href="{% url 'home:data_view' %}"><font color = "white">Kembali</a>
-
         </div>
-      </div>
-      </div>
-      </div>
-      </div>
+    </div>
 
-</body>
-</html>
+    <br/>
+    <br/>
+
+</div>
+
+<div class="header bg-green pb-4 pt-5 pt-md-4"></div>
+
 {% endblock %}

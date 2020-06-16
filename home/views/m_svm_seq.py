@@ -1,13 +1,9 @@
 import numpy as np
-<<<<<<< HEAD
-
+import pandas as pd 
 from sklearn.model_selection import train_test_split, cross_val_score, cross_val_predict, StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
 
-=======
-import pandas as pd
->>>>>>> e49ed52175c42e6e720a30436879250a778f6244
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.preprocessing import StandardScaler

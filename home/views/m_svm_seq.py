@@ -1,16 +1,19 @@
-import pandas as pd
 import numpy as np
+<<<<<<< HEAD
 
 from sklearn.model_selection import train_test_split, cross_val_score, cross_val_predict, StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
 
+=======
+import pandas as pd
+>>>>>>> e49ed52175c42e6e720a30436879250a778f6244
 from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.model_selection import KFold
+from sklearn.model_selection import train_test_split, StratifiedKFold
+from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 from home.models import Data
-import logging
 
 
 def calculate_svm_seq(const, max_iterasi, gamma, split):

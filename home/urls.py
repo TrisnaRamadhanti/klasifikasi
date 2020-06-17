@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from home.views import view_data, view_normalisasi, view_naivebayes, view_svm_seq, view_svm_smo
+from home.views import view_data, view_normalisasi, view_naivebayes, view_svm_seq, view_svm_smo, view_decissiontree
 
 app_name = 'home'
 
@@ -31,4 +31,5 @@ urlpatterns = [
     path('naivebayes/', view_naivebayes.IndexView.as_view(), name='naivebayes'),
     path('svmsequential/', view_svm_seq.IndexView.as_view(), name='svmsequential'),
     path('svmsmo/', view_svm_smo.IndexView.as_view(), name='svmsmo'),
+    path('decissiontree/', view_decissiontree.IndexView.as_view(), name='decissiontree'),
 ]

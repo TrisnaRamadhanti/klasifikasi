@@ -130,11 +130,9 @@ def calculate_svm_smo(epsilon, C, max_iter, split):
     # kfold_scores = cross_val_score(modelnb, x, y, cv=2)
     # kfold_predict = cross_val_predict(modelnb, x, y, cv=2)
 
-    # print('Evaluasi Scores')
-    # print(np.mean(scores))
-    # print("-----------------------")
-
-    print(data_evaluasi)
+    print('Evaluasi Scores')
+    print(np.mean(scores))
+    print("-----------------------")
 
     data_svm = {
         'data_training': x_train,

@@ -50,3 +50,9 @@ class TrainingNaiveBayesForm(forms.Form):
     k_fold = forms.CharField(label='KFold (Split)', required=True, max_length=100,
                              widget=TextInput(attrs={'type': 'number'}),
                              error_messages={'required': "Masukkan KFold (Split)"})
+
+
+class TrainingDecissionTreeForm(forms.Form):
+    k_fold = forms.CharField(label='KFold (Split)', required=True, max_length=100,
+                             widget=TextInput(attrs={'type': 'number'}),
+                             error_messages={'required': "Masukkan KFold (Split)"})

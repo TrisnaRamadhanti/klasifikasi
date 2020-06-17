@@ -97,6 +97,8 @@ def calculate_svm_seq(const, max_iterasi, gamma, split):
 
     # Cara 1
     scores = []
+    data_evaluasi = []
+
     cv = StratifiedKFold(n_splits=split, shuffle=True, random_state=42)
     for train_index, test_index in cv.split(x, y):
 
@@ -104,7 +106,30 @@ def calculate_svm_seq(const, max_iterasi, gamma, split):
         svclassifier.fit(x_train, y_train)
 
         predictions = svclassifier.predict(x_test)
-        # print("Predictions: ", predictions)
+        classification = classification_report(y_test, predictions, output_dict=True)
+
+        data1 = {
+            'label': 'Berkembang',
+            'precision': classification['1']['precision'],
+            'recall': classification['1']['recall'],
+            'f1_score': classification['1']['f1-score'],
+        }
+        data2 = {
+            'label': 'Belum Berkembang',
+            'precision': classification['-1']['precision'],
+            'recall': classification['-1']['recall'],
+            'f1_score': classification['-1']['f1-score']
+        }
+
+        classification['1'] = data1
+        classification['-1'] = data2
+
+        evaluasi = [classification['1'], classification['-1']]
+        data_evaluasi.append(evaluasi)
+
+        print(classification['1'])
+        print(classification['-1'])
+        print('------------------')
 
         scores.append(svclassifier.score(x_test, y_test))
 
@@ -125,7 +150,7 @@ def calculate_svm_seq(const, max_iterasi, gamma, split):
         'report': classification,
         'scores': scores,
         'scores_mean': np.mean(scores),
-        # 'pesan': pesan
+        'data_evaluasi': data_evaluasi
     }
 
     return data_svm

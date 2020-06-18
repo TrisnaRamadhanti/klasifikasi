@@ -14,27 +14,14 @@ def calculate_decisiontree(split):
 
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
 
-    y = df['Decision']
-    y_kfold = df['Decision']
-
     df.drop(['semester_mulai'], axis=1, inplace=True)
     df.drop(['kode_prodi'], axis=1, inplace=True)
     df.drop(['tahun_smstr'], axis=1, inplace=True)
     df.drop(['nama_prodi'], axis=1, inplace=True)
     df.drop(['created_at'], axis=1, inplace=True)
 
-    # Untuk mengambil data training
-    x = df
-    x_kfold = df
-
-    # Evaluasi Model
-    x = x_kfold
-    y = y_kfold
-
-    scaler = StandardScaler()
-    scaler.fit(x)
-
-    x = scaler.transform(x)
+    x = df.to_numpy()
+    y = df['Decision']
 
     config = {'algorithm': 'C4.5'}
 
@@ -44,8 +31,12 @@ def calculate_decisiontree(split):
 
     cv = StratifiedKFold(n_splits=split, shuffle=True, random_state=42)
     for train_index, test_index in cv.split(x, y):
+
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
+
         model = cf.fit(df.copy(), config)
+
+        print(x_test)
 
         predictions = cf.predict(model, x_test)
         # classification = classification_report(y_test, predictions, output_dict=True)

@@ -14,16 +14,22 @@ def calculate_decisiontree(split):
 
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
 
+    df.drop(['id'], axis=1, inplace=True)
     df.drop(['semester_mulai'], axis=1, inplace=True)
     df.drop(['kode_prodi'], axis=1, inplace=True)
     df.drop(['tahun_smstr'], axis=1, inplace=True)
     df.drop(['nama_prodi'], axis=1, inplace=True)
     df.drop(['created_at'], axis=1, inplace=True)
 
-    x = df.to_numpy()
+    df_copy = df.copy()
     y = df['Decision']
 
+    # Test
+    df.drop(['Decision'], axis=1, inplace=True)
+    x = df.to_numpy()
+
     config = {'algorithm': 'C4.5'}
+    model = cf.fit(df_copy, config)
 
     # Cara 1
     scores = []
@@ -34,37 +40,45 @@ def calculate_decisiontree(split):
 
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
 
-        model = cf.fit(df.copy(), config)
+        predictions_list = []
+
+        for i, z in enumerate(x_test.tolist()):
+            predictions = cf.predict(model, z)
+            predictions_list.append(predictions)
 
         print(x_test)
+        print("----------------------------------")
+        print(predictions_list)
 
-        predictions = cf.predict(model, x_test)
-        # classification = classification_report(y_test, predictions, output_dict=True)
+        classification = classification_report(y_test, predictions_list, output_dict=True)
 
-        # data1 = {
-        #     'label': 'Berkembang',
-        #     'precision': classification['1']['precision'],
-        #     'recall': classification['1']['recall'],
-        #     'f1_score': classification['1']['f1-score']
-        # }
-        # data2 = {
-        #     'label': 'Belum Berkembang',
-        #     'precision': classification['-1']['precision'],
-        #     'recall': classification['-1']['recall'],
-        #     'f1_score': classification['-1']['f1-score']
-        # }
-        #
-        # classification['1'] = data1
-        # classification['-1'] = data2
-        #
-        # evaluasi = [classification['1'], classification['-1']]
-        # data_evaluasi.append(evaluasi)
-        #
-        # print(classification['1'])
-        # print(classification['-1'])
+        data1 = {
+            'label': 'Berkembang',
+            'precision': classification['Berkembang']['precision'],
+            'recall': classification['Berkembang']['recall'],
+            'f1_score': classification['Berkembang']['f1-score']
+        }
+        data2 = {
+            'label': 'Belum Berkembang',
+            'precision': classification['Belum Berkembang']['precision'],
+            'recall': classification['Belum Berkembang']['recall'],
+            'f1_score': classification['Belum Berkembang']['f1-score']
+        }
+
+        classification['Berkembang'] = data1
+        classification['Belum Berkembang'] = data2
+
+        evaluasi = [classification['Berkembang'], classification['Belum Berkembang']]
+        data_evaluasi.append({
+            'evaluasi': evaluasi,
+            'accuracy': classification['accuracy']
+        })
+
+        # print(classification['Berkembang'])
+        # print(classification['Belum Berkembang'])
         # print('------------------')
 
-        print(test_index, predictions)
+        # print(test_index, predictions)
 
     # Cara 2
     # kfold_scores = cross_val_score(modelnb, x, y, cv=2)

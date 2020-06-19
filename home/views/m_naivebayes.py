@@ -104,6 +104,7 @@ def calculate_naivebayes(split):
 
         predictions = modelnb.predict(x_test)
         classification = classification_report(y_test, predictions, output_dict=True)
+        print(classification)
 
         data1 = {
             'label': 'Berkembang',
@@ -122,7 +123,10 @@ def calculate_naivebayes(split):
         classification['-1'] = data2
 
         evaluasi = [classification['1'], classification['-1']]
-        data_evaluasi.append(evaluasi)
+        data_evaluasi.append({
+            'evaluasi': evaluasi,
+            'accuracy': classification['accuracy']
+        })
 
         print(classification['1'])
         print(classification['-1'])
@@ -137,6 +141,8 @@ def calculate_naivebayes(split):
     print('Evaluasi Scores')
     print(np.mean(scores))
     print("-----------------------")
+
+    print(data_evaluasi)
 
     data_naive_bayes = {
         'data_training': x_train,

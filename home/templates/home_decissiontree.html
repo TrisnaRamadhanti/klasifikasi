@@ -57,7 +57,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for dt in data %}
+                            {% for dt in data.evaluasi %}
                             <tr>
                                 <td>{{ dt.label }}</td>
                                 <td>{{ dt.precision }}</td>
@@ -67,6 +67,9 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        <h4 style="margin: 12px;"><b>Accuracy : {{ data.accuracy }}</b></h4>
+                        <br />
+                        <br />
                         {% endfor %}
 
                         <br/>

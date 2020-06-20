@@ -125,7 +125,10 @@ def calculate_svm_seq(const, max_iterasi, gamma, split):
         classification['-1'] = data2
 
         evaluasi = [classification['1'], classification['-1']]
-        data_evaluasi.append(evaluasi)
+        data_evaluasi.append({
+            'evaluasi': evaluasi,
+            'accuracy': classification['accuracy']
+        })
 
         print(classification['1'])
         print(classification['-1'])

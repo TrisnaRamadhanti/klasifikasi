@@ -112,7 +112,7 @@ def calculate_svm_seq(const, max_iterasi, gamma, split):
             'label': 'Berkembang',
             'precision': classification['1']['precision'],
             'recall': classification['1']['recall'],
-            'f1_score': classification['1']['f1-score'],
+            'f1_score': classification['1']['f1-score']
         }
         data2 = {
             'label': 'Belum Berkembang',

@@ -21,15 +21,20 @@ def calculate_decisiontree(split):
     df.drop(['nama_prodi'], axis=1, inplace=True)
     df.drop(['created_at'], axis=1, inplace=True)
 
-    df_copy = df.copy()
+    df['peminat_prodi'] = df['peminat_prodi'].astype('float')
+    df['rerata_ipk'] = df['rerata_ipk'].astype('float')
+    df['kelulusan'] = df['kelulusan'].astype('int')
+    df['jam_kehadiran_dosen'] = df['jam_kehadiran_dosen'].astype('float')
+    df['rerata_nilai_dosen'] = df['rerata_nilai_dosen'].astype('float')
+
     y = df['Decision']
+
+    config = {'algorithm': 'C4.5'}
+    model = cf.fit(df.copy(), config)
 
     # Test
     df.drop(['Decision'], axis=1, inplace=True)
     x = df.to_numpy()
-
-    config = {'algorithm': 'C4.5'}
-    model = cf.fit(df_copy, config)
 
     # Cara 1
     scores = []
@@ -46,9 +51,9 @@ def calculate_decisiontree(split):
             predictions = cf.predict(model, z)
             predictions_list.append(predictions)
 
-        print(x_test)
-        print("----------------------------------")
-        print(predictions_list)
+        # print(x_test)
+        # print("----------------------------------")
+        # print(predictions_list)
 
         classification = classification_report(y_test, predictions_list, output_dict=True)
 

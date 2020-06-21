@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col">
             <div class="card shadow">
-
                 <div class="card-header border-0">
                     <h3>Input Paramater</h3>
                 </div>
@@ -35,13 +34,15 @@
                         <button type="submit" class="btn btn-primary btn-sm" id="btn_proses_training">Proses</button>
                     </form>
                 </div>
-
+            </div>
                 <br/>
                 <br/>
 
                 <div class="col-md-12" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
+                    <div class="card shadow">
+                    <div class="card-header border-0">
                     <div class="table-responsive">
-                        <h2 style="margin: 12px;"><b>Evaluasi Performa</b></h2>
+                        <h2 style="margin: 12px;"><b>Evaluasi Metode</b></h2>
                         <br/>
 
                         {% for data in data.data_evaluasi %}
@@ -67,27 +68,20 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                        <h4 style="margin: 12px;"><b>Accuracy : {{ data.accuracy }}</b></h4>
-                        <br />
                         <br />
                         {% endfor %}
 
                         <br/>
-                        <br/>
-                        <br/>
-
                     </div>
 
-                    <br />
-
                     <div class="table-responsive">
-                        <h2 style="margin: 12px;"><b>Evaluasi Score</b></h2>
+                        <h2 style="margin: 12px;"><b>Hasil Akurasi</b></h2>
                         <br/>
                         <table class="table align-items-center table-flush">
                             <thead>
                             <tr>
                                 <th width="10%"><b>Iterasi</b></th>
-                                <th width="90%"><b>Score</b></th>
+                                <th width="90%"><b>Hasil Akurasi</b></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -101,10 +95,7 @@
                         </table>
 
                         <br/>
-                        <br/>
-                        <br/>
-
-                        <h4 style="margin: 12px;"><b>Rata-rata Scores:</b></h4>
+                        <h4 style="margin: 12px;"><b>Rata-rata Akurasi:</b></h4>
                         <h3 style="margin: 12px;"><b>{{ data.scores_mean }}</b></h3>
                     </div>
                 </div>

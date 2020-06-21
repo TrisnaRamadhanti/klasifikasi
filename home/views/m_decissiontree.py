@@ -51,10 +51,6 @@ def calculate_decisiontree(split):
             predictions = cf.predict(model, z)
             predictions_list.append(predictions)
 
-        # print(x_test)
-        # print("----------------------------------")
-        # print(predictions_list)
-
         classification = classification_report(y_test, predictions_list, output_dict=True)
 
         data1 = {
@@ -81,23 +77,12 @@ def calculate_decisiontree(split):
 
         scores.append(classification['accuracy'])
 
-        # print(classification['Berkembang'])
-        # print(classification['Belum Berkembang'])
-        # print('------------------')
-
-        # print(test_index, predictions)
-
     # Cara 2
     # kfold_scores = cross_val_score(modelnb, x, y, cv=2)
     # kfold_predict = cross_val_predict(modelnb, x, y, cv=2)
 
-    print('Evaluasi Scores')
-    print(np.mean(scores))
-    print("-----------------------")
-
     data_svm = {
         'scores': scores,
-        'scores_mean': '-',
         'data_evaluasi': data_evaluasi,
         'scores_mean': np.mean(scores)
     }

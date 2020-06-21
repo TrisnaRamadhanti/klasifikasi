@@ -18,6 +18,7 @@ def calculate_naivebayes(split):
     y = df['label_kelas']
     y_kfold = df['label_kelas']
 
+    df.drop(['id'], axis=1, inplace=True)
     df.drop(['label_kelas'], axis=1, inplace=True)
     df.drop(['semester_mulai'], axis=1, inplace=True)
     df.drop(['kode_prodi'], axis=1, inplace=True)

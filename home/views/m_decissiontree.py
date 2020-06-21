@@ -79,6 +79,8 @@ def calculate_decisiontree(split):
             'accuracy': classification['accuracy']
         })
 
+        scores.append(classification['accuracy'])
+
         # print(classification['Berkembang'])
         # print(classification['Belum Berkembang'])
         # print('------------------')
@@ -96,7 +98,8 @@ def calculate_decisiontree(split):
     data_svm = {
         'scores': scores,
         'scores_mean': '-',
-        'data_evaluasi': data_evaluasi
+        'data_evaluasi': data_evaluasi,
+        'scores_mean': np.mean(scores)
     }
 
     return data_svm

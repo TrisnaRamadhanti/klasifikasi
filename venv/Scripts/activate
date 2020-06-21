@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="E:\Project\2020\Skripsi_D4TI_Polinema\_Github\Trisna\venv"
+VIRTUAL_ENV="D:\Punya Trisna Data\Kuliah\Skripsi\UNISMA\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

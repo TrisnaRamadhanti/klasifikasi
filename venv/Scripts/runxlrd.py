@@ -1,4 +1,4 @@
-#!e:\project\2020\skripsi_d4ti_polinema\_github\trisna\venv\scripts\python.exe
+#!D:\Punya Trisna Data\Kuliah\Skripsi\UNISMA\venv\Scripts\python.exe
 # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
 # This script is part of the xlrd package, which is released under a
 # BSD-style licence.

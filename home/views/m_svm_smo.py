@@ -78,7 +78,7 @@ def calculate_svm_smo(epsilon, C, max_iter, split):
         x_train, x_test, y_train, y_test = x[train_index], x[test_index], y[train_index], y[test_index]
         # svm.fit(np.array(x_train), np.array(y_train))
 
-        prob = svm_problem(y_train.to_numpy(), x_train.to_numpy())
+        prob = svm_problem(y_train.to_numpy(), x_train)
 
         print(y_train)
         print(x_train)

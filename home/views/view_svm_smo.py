@@ -42,7 +42,6 @@ class IndexView(ListView):
 
         if form.is_valid():
             constant = float(form.cleaned_data['constant'])
-            iterasi = int(form.cleaned_data['iterasi'])
             epsilon = float(form.cleaned_data['epsilon'])
             k_fold = int(form.cleaned_data['k_fold'])
 
@@ -53,12 +52,11 @@ class IndexView(ListView):
                 param.id = '1'
 
             param.constant = constant
-            param.iterasi = iterasi
             param.epsilon = epsilon
             param.k_fold = k_fold
             param.save()
 
-            data_training = m_svm_smo.calculate_svm_smo(epsilon, constant, iterasi, k_fold)
+            data_training = m_svm_smo.calculate_svm_smo(epsilon, constant, k_fold)
             scores = data_training['scores']
             scores_mean = data_training['scores_mean']
             data_evaluasi = data_training['data_evaluasi']

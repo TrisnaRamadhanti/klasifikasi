@@ -35,9 +35,9 @@ class TrainingSvmSmoForm(forms.Form):
     constant = forms.CharField(label='Constant', required=True, max_length=100,
                                widget=TextInput(attrs={'type': 'number'}),
                                error_messages={'required': "Constant"})
-    iterasi = forms.CharField(label='Iterasi', required=True, max_length=100,
-                              widget=TextInput(attrs={'type': 'number'}),
-                              error_messages={'required': "Iterasi"})
+    # iterasi = forms.CharField(label='Iterasi', required=True, max_length=100,
+    #                           widget=TextInput(attrs={'type': 'number'}),
+    #                           error_messages={'required': "Iterasi"})
     epsilon = forms.CharField(label='Tolerance (Nilai Error / E)', required=True, max_length=100,
                               widget=TextInput(attrs={'type': 'number'}),
                               error_messages={'required': "Iterasi"})

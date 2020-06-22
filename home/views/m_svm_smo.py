@@ -10,7 +10,7 @@ from home.models import Data
 # from home.views.svm_smo import SVM
 
 
-def calculate_svm_smo(epsilon, C, max_iter, split):
+def calculate_svm_smo(epsilon, C, split):
 
     df = pd.DataFrame.from_records(Data.objects.all().values())
 

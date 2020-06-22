@@ -1,11 +1,10 @@
-import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score, cross_val_predict, StratifiedKFold
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report, confusion_matrix
+import pandas as pd
+from chefboost import Chefboost as cf
+from sklearn.metrics import classification_report
+from sklearn.model_selection import StratifiedKFold
 
 from home.models import Data
-from chefboost import Chefboost as cf
 
 
 def calculate_decisiontree(split):
@@ -14,27 +13,17 @@ def calculate_decisiontree(split):
 
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
 
-    df.drop(['id'], axis=1, inplace=True)
-    df.drop(['semester_mulai'], axis=1, inplace=True)
-    df.drop(['kode_prodi'], axis=1, inplace=True)
-    df.drop(['tahun_smstr'], axis=1, inplace=True)
-    df.drop(['nama_prodi'], axis=1, inplace=True)
-    df.drop(['created_at'], axis=1, inplace=True)
-
     df['peminat_prodi'] = df['peminat_prodi'].astype('float')
     df['rerata_ipk'] = df['rerata_ipk'].astype('float')
     df['kelulusan'] = df['kelulusan'].astype('int')
     df['jam_kehadiran_dosen'] = df['jam_kehadiran_dosen'].astype('float')
     df['rerata_nilai_dosen'] = df['rerata_nilai_dosen'].astype('float')
 
-    y = df['Decision']
-
     config = {'algorithm': 'C4.5'}
-    model = cf.fit(df.copy(), config)
+    model = cf.fit(df.iloc[:, 5:11].copy(), config)
 
-    # Test
-    df.drop(['Decision'], axis=1, inplace=True)
-    x = df.to_numpy()
+    x = df.iloc[:, 5:10].to_numpy()
+    y = df['Decision']
 
     # Cara 1
     scores = []

@@ -1,13 +1,11 @@
-import pandas as pd
 import numpy as np
-from libsvm.svm import *
+import pandas as pd
 from libsvm.svmutil import *
-from sklearn.model_selection import train_test_split, cross_val_score, cross_val_predict, StratifiedKFold
+from sklearn.metrics import classification_report
+from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report, confusion_matrix
 
 from home.models import Data
-# from home.views.svm_smo import SVM
 
 
 def calculate_svm_smo(epsilon, C, split):
@@ -16,46 +14,11 @@ def calculate_svm_smo(epsilon, C, split):
 
     df['label_kelas'] = df['label_kelas'].apply(lambda l: 1 if l == 'Berkembang' else -1)
 
+    x = df.iloc[:, 5:10]
     y = df['label_kelas']
-    y_kfold = df['label_kelas']
-
-    df.drop(['label_kelas'], axis=1, inplace=True)
-    df.drop(['semester_mulai'], axis=1, inplace=True)
-    df.drop(['kode_prodi'], axis=1, inplace=True)
-    df.drop(['tahun_smstr'], axis=1, inplace=True)
-    df.drop(['nama_prodi'], axis=1, inplace=True)
-    df.drop(['created_at'], axis=1, inplace=True)
-
-    # Untuk mengambil data training
-    x = df
-    x_kfold = df
-
-    # Jika ingin ambil data training dan test secara acak
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=123)
-
-    scaler = StandardScaler()
-    scaler.fit(x_train)
-
-    x_train = scaler.transform(x_train)
-    x_test = scaler.transform(x_test)
-
-    # svm = SVM(max_iter=max_iter, kernel_type='linear', C=C, epsilon=epsilon)
-    # svm.fit(np.array(x_train), np.array(y_train))
-    #
-    # predictions_prob = svm.predict_proba(x_test)
-    #
-    # predictions = svm.predict(x_test)
-    #
-    # confusion = confusion_matrix(y_test, predictions)
-    # classification = classification_report(y_test, predictions, output_dict=True)
-
-    # print(confusion)
-    # print(classification)
 
     # ---------------------------------------------------------------------------------------------------------------- #
     # Evaluasi Model
-    x = x_kfold
-    y = y_kfold
 
     scaler = StandardScaler()
     scaler.fit(x)
@@ -81,37 +44,33 @@ def calculate_svm_smo(epsilon, C, split):
         prob = svm_problem(np.array(y_train), np.array(x_train))
 
         m = svm_train(prob, param)
-        predictions = svm_predict(np.array(y_train), np.array(x_train), m)
+        predictions = svm_predict(np.array(y_test), np.array(x_test), m)
 
-        print(predictions)
+        classification = classification_report(y_test, predictions[0], output_dict=True)
 
-        # classification = classification_report(y_test, predictions, output_dict=True)
-        #
-        # data1 = {
-        #     'label': 'Berkembang',
-        #     'precision': classification['1']['precision'],
-        #     'recall': classification['1']['recall'],
-        #     'f1_score': classification['1']['f1-score']
-        # }
-        # data2 = {
-        #     'label': 'Belum Berkembang',
-        #     'precision': classification['-1']['precision'],
-        #     'recall': classification['-1']['recall'],
-        #     'f1_score': classification['-1']['f1-score']
-        # }
-        #
-        # classification['1'] = data1
-        # classification['-1'] = data2
-        #
-        # evaluasi = [classification['1'], classification['-1']]
-        # data_evaluasi.append({
-        #     'evaluasi': evaluasi,
-        #     'accuracy': classification['accuracy']
-        # })
-        #
-        # print(classification['1'])
-        # print(classification['-1'])
-        # print('------------------')
+        data1 = {
+            'label': 'Berkembang',
+            'precision': classification['1']['precision'],
+            'recall': classification['1']['recall'],
+            'f1_score': classification['1']['f1-score']
+        }
+        data2 = {
+            'label': 'Belum Berkembang',
+            'precision': classification['-1']['precision'],
+            'recall': classification['-1']['recall'],
+            'f1_score': classification['-1']['f1-score']
+        }
+
+        classification['1'] = data1
+        classification['-1'] = data2
+
+        evaluasi = [classification['1'], classification['-1']]
+        data_evaluasi.append({
+            'evaluasi': evaluasi,
+            'accuracy': classification['accuracy']
+        })
+
+        scores.append(classification['accuracy'])
 
     # Cara 2
     # kfold_scores = cross_val_score(modelnb, x, y, cv=2)
@@ -119,7 +78,7 @@ def calculate_svm_smo(epsilon, C, split):
 
     data_svm = {
         'scores': scores,
-        'scores_mean': '-',
+        'scores_mean': np.mean(scores),
         'data_evaluasi': data_evaluasi
     }
 

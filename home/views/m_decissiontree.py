@@ -72,8 +72,8 @@ def calculate_decisiontree(split):
 
     data_svm = {
         'scores': scores,
-        'data_evaluasi': data_evaluasi,
-        'scores_mean': np.mean(scores)
+        'scores_mean': np.mean(scores),
+        'data_evaluasi': data_evaluasi
     }
 
     return data_svm

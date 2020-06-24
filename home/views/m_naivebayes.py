@@ -10,20 +10,9 @@ from home.models import Data
 
 def calculate_naivebayes(split):
 
-    df = pd.DataFrame.from_records(Data.objects.all().values())
-
-    df['label_kelas'] = df['label_kelas'].apply(lambda l: 1 if l == 'Berkembang' else -1)
-
-    x = df.iloc[:, 5:10]
-    y = df['label_kelas']
-
-    # ---------------------------------------------------------------------------------------------------------------- #
-    # Evaluasi Model
-
-    scaler = StandardScaler()
-    scaler.fit(x)
-
-    x = scaler.transform(x)
+    data = get_normalisasi()
+    x = data['x']
+    y = data['y']
 
     modelnb = GaussianNB()
 
@@ -75,3 +64,25 @@ def calculate_naivebayes(split):
     }
 
     return data_naive_bayes
+
+
+def get_normalisasi():
+
+    df = pd.DataFrame.from_records(Data.objects.all().values())
+
+    df['label_kelas'] = df['label_kelas'].apply(lambda l: 1 if l == 'Berkembang' else -1)
+
+    x = df.iloc[:, 5:10]
+    y = df['label_kelas']
+
+    scaler = StandardScaler()
+    scaler.fit(x)
+
+    x = scaler.transform(x)
+
+    data = {
+        'x': x,
+        'y': y
+    }
+
+    return data

@@ -77,3 +77,17 @@ class IndexView(ListView):
         else:
             return redirect('/login/')
 
+
+class IndexViewNormalisasi(ListView):
+    template_name = 'home_naivebayes_normalisasi.html'
+    context_object_name = 'data'
+
+    normalisasi = m_naivebayes.get_normalisasi()
+
+    def get_queryset(self):
+
+        context = {
+            'scores': [],
+        }
+
+        return context

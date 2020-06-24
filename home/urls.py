@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('normalisasi/', view_normalisasi.IndexView.as_view(), name='normalisasi'),
     path('naivebayes/', view_naivebayes.IndexView.as_view(), name='naivebayes'),
+    path('naivebayes_normalisasi/', view_naivebayes.IndexViewNormalisasi.as_view(), name='naivebayes_normalisasi'),
     path('svmsequential/', view_svm_seq.IndexView.as_view(), name='svmsequential'),
     path('svmsmo/', view_svm_smo.IndexView.as_view(), name='svmsmo'),
     path('decissiontree/', view_decissiontree.IndexView.as_view(), name='decissiontree'),

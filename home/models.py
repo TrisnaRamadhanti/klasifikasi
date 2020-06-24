@@ -20,8 +20,6 @@ class Data(models.Model):
 
 class TrainingSvmSeq(models.Model):
     id = models.IntegerField('id', primary_key=True)
-    lamda = models.CharField('Lambda', max_length=100, blank=True, null=True)
-    sigma = models.CharField('Sigma', max_length=100, blank=True, null=True)
     constant = models.CharField('Constant', max_length=100, blank=True, null=True)
     gamma = models.CharField('Gamma', max_length=100, blank=True, null=True)
     iterasi = models.CharField('Iterasi', max_length=100, blank=True, null=True)

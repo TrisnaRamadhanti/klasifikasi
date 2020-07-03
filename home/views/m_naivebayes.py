@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler
 from home.models import Data
 
 
-def calculate_naivebayes(split):
+def calculate_naivebayes(split, tahun):
 
-    data = get_normalisasi()
+    data = get_normalisasi(tahun)
     x = data['x']
     y = data['y']
 
@@ -29,23 +29,26 @@ def calculate_naivebayes(split):
         predictions = modelnb.predict(x_test)
         classification = classification_report(y_test, predictions, output_dict=True)
 
-        data1 = {
-            'label': 'Berkembang',
-            'precision': classification['1']['precision'],
-            'recall': classification['1']['recall'],
-            'f1_score': classification['1']['f1-score'],
-        }
-        data2 = {
-            'label': 'Belum Berkembang',
-            'precision': classification['-1']['precision'],
-            'recall': classification['-1']['recall'],
-            'f1_score': classification['-1']['f1-score']
-        }
+        evaluasi = []
 
-        classification['1'] = data1
-        classification['-1'] = data2
+        if '1' in classification:
+            data1 = {
+                'label': 'Berkembang',
+                'precision': classification['1']['precision'],
+                'recall': classification['1']['recall'],
+                'f1_score': classification['1']['f1-score'],
+            }
+            evaluasi.append(data1)
 
-        evaluasi = [classification['1'], classification['-1']]
+        if '-1' in classification:
+            data2 = {
+                'label': 'Belum Berkembang',
+                'precision': classification['-1']['precision'],
+                'recall': classification['-1']['recall'],
+                'f1_score': classification['-1']['f1-score']
+            }
+            evaluasi.append(data2)
+
         data_evaluasi.append({
             'evaluasi': evaluasi,
             'accuracy': classification['accuracy']
@@ -66,9 +69,9 @@ def calculate_naivebayes(split):
     return data_naive_bayes
 
 
-def get_normalisasi():
+def get_normalisasi(tahun):
 
-    df = pd.DataFrame.from_records(Data.objects.all().values())
+    df = pd.DataFrame.from_records(Data.objects.filter(tahun_smstr=tahun).values())
 
     df['label_kelas'] = df['label_kelas'].apply(lambda l: 1 if l == 'Berkembang' else -1)
 

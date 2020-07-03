@@ -10,7 +10,9 @@ class IndexView(ListView):
     template_name = 'home_naivebayes.html'
     context_object_name = 'data'
 
-    def get_queryset(self):
+    def get_queryset(self, **kwargs):
+
+        tahun = self.kwargs['tahun']
 
         try:
             data = TrainingNaiveBayes.objects.get(id='1')
@@ -24,6 +26,7 @@ class IndexView(ListView):
             form = TrainingNaiveBayesForm()
 
         context = {
+            'tahun': tahun,
             'scores': [],
             'scores_mean': 0,
             'data_evaluasi': [],
@@ -36,6 +39,9 @@ class IndexView(ListView):
     # Handle POST HTTP requests
     def post(self, request, *args, **kwargs):
         if 'username' in request.session:
+
+            tahun = self.kwargs['tahun']
+
             form = TrainingNaiveBayesForm(request.POST)
 
             if form.is_valid():
@@ -50,12 +56,13 @@ class IndexView(ListView):
                 param.k_fold = k_fold
                 param.save()
 
-                data_training = m_naivebayes.calculate_naivebayes(k_fold)
+                data_training = m_naivebayes.calculate_naivebayes(k_fold, tahun)
                 scores = data_training['scores']
                 scores_mean = data_training['scores_mean']
                 data_evaluasi = data_training['data_evaluasi']
 
                 context = {
+                    'tahun': tahun,
                     'scores': scores,
                     'scores_mean': scores_mean,
                     'data_evaluasi': data_evaluasi,
@@ -66,6 +73,7 @@ class IndexView(ListView):
                 return render(request, self.template_name, {self.context_object_name: context})
             else:
                 context = {
+                    'tahun': tahun,
                     'scores': [],
                     'scores_mean': 0,
                     'data_evaluasi': [],
@@ -77,17 +85,3 @@ class IndexView(ListView):
         else:
             return redirect('/login/')
 
-
-class IndexViewNormalisasi(ListView):
-    template_name = 'home_naivebayes_normalisasi.html'
-    context_object_name = 'data'
-
-    normalisasi = m_naivebayes.get_normalisasi()
-
-    def get_queryset(self):
-
-        context = {
-            'scores': [],
-        }
-
-        return context

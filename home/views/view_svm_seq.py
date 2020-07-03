@@ -10,7 +10,9 @@ class IndexView(ListView):
     template_name = 'home_svm_seq.html'
     context_object_name = 'data'
 
-    def get_queryset(self):
+    def get_queryset(self, **kwargs):
+
+        tahun = self.kwargs['tahun']
 
         try:
             data = TrainingSvmSeq.objects.get(id='1')
@@ -29,6 +31,7 @@ class IndexView(ListView):
             form = TrainingSvmSeqForm()
 
         context = {
+            'tahun': tahun,
             'scores': [],
             'scores_mean': 0,
             'data_evaluasi': [],
@@ -40,6 +43,9 @@ class IndexView(ListView):
 
     # Handle POST HTTP requests
     def post(self, request, *args, **kwargs):
+
+        tahun = self.kwargs['tahun']
+
         form = TrainingSvmSeqForm(request.POST)
 
         if form.is_valid():
@@ -64,12 +70,13 @@ class IndexView(ListView):
             param.k_fold = k_fold
             param.save()
 
-            data_training = m_svm_seq.calculate_svm_seq(constant, iterasi, gamma, k_fold)
+            data_training = m_svm_seq.calculate_svm_seq(tahun, constant, iterasi, gamma, k_fold)
             scores = data_training['scores']
             scores_mean = data_training['scores_mean']
             data_evaluasi = data_training['data_evaluasi']
 
             context = {
+                'tahun': tahun,
                 'scores': scores,
                 'scores_mean': scores_mean,
                 'data_evaluasi': data_evaluasi,
@@ -80,6 +87,7 @@ class IndexView(ListView):
             return render(request, self.template_name, {self.context_object_name: context})
         else:
             context = {
+                'tahun': tahun,
                 'scores': [],
                 'scores_mean': 0,
                 'data_evaluasi': [],

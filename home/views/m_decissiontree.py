@@ -7,9 +7,9 @@ from sklearn.model_selection import StratifiedKFold
 from home.models import Data
 
 
-def calculate_decisiontree(split):
+def calculate_decisiontree(split, tahun):
 
-    df = pd.DataFrame.from_records(Data.objects.all().values())
+    df = pd.DataFrame.from_records(Data.objects.filter(tahun_smstr=tahun).values())
 
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
 
@@ -42,23 +42,26 @@ def calculate_decisiontree(split):
 
         classification = classification_report(y_test, predictions_list, output_dict=True)
 
-        data1 = {
-            'label': 'Berkembang',
-            'precision': classification['Berkembang']['precision'],
-            'recall': classification['Berkembang']['recall'],
-            'f1_score': classification['Berkembang']['f1-score']
-        }
-        data2 = {
-            'label': 'Belum Berkembang',
-            'precision': classification['Belum Berkembang']['precision'],
-            'recall': classification['Belum Berkembang']['recall'],
-            'f1_score': classification['Belum Berkembang']['f1-score']
-        }
+        evaluasi = []
 
-        classification['Berkembang'] = data1
-        classification['Belum Berkembang'] = data2
+        if 'Berkembang' in classification:
+            data1 = {
+                'label': 'Berkembang',
+                'precision': classification['Berkembang']['precision'],
+                'recall': classification['Berkembang']['recall'],
+                'f1_score': classification['Berkembang']['f1-score']
+            }
+            evaluasi.append(data1)
 
-        evaluasi = [classification['Berkembang'], classification['Belum Berkembang']]
+        if 'Belum Berkembang' in classification:
+            data2 = {
+                'label': 'Belum Berkembang',
+                'precision': classification['Belum Berkembang']['precision'],
+                'recall': classification['Belum Berkembang']['recall'],
+                'f1_score': classification['Belum Berkembang']['f1-score']
+            }
+            evaluasi.append(data2)
+
         data_evaluasi.append({
             'evaluasi': evaluasi,
             'accuracy': classification['accuracy']

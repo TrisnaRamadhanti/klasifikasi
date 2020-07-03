@@ -10,7 +10,9 @@ class IndexView(ListView):
     template_name = 'home_svm_smo.html'
     context_object_name = 'data'
 
-    def get_queryset(self):
+    def get_queryset(self, **kwargs):
+
+        tahun = self.kwargs['tahun']
 
         try:
             data = TrainingSvmSmo.objects.get(id='1')
@@ -27,6 +29,7 @@ class IndexView(ListView):
             form = TrainingSvmSmoForm()
 
         context = {
+            'tahun': tahun,
             'scores': [],
             'scores_mean': 0,
             'data_evaluasi': [],
@@ -38,6 +41,9 @@ class IndexView(ListView):
 
     # Handle POST HTTP requests
     def post(self, request, *args, **kwargs):
+
+        tahun = self.kwargs['tahun']
+
         form = TrainingSvmSmoForm(request.POST)
 
         if form.is_valid():
@@ -56,12 +62,13 @@ class IndexView(ListView):
             param.k_fold = k_fold
             param.save()
 
-            data_training = m_svm_smo.calculate_svm_smo(epsilon, constant, k_fold)
+            data_training = m_svm_smo.calculate_svm_smo(tahun, epsilon, constant, k_fold)
             scores = data_training['scores']
             scores_mean = data_training['scores_mean']
             data_evaluasi = data_training['data_evaluasi']
 
             context = {
+                'tahun': tahun,
                 'scores': scores,
                 'scores_mean': scores_mean,
                 'data_evaluasi': data_evaluasi,
@@ -72,6 +79,7 @@ class IndexView(ListView):
             return render(request, self.template_name, {self.context_object_name: context})
         else:
             context = {
+                'tahun': tahun,
                 'scores': [],
                 'scores_mean': 0,
                 'data_evaluasi': [],

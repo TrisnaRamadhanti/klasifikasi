@@ -10,6 +10,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
 # memanggil class Data pada model
 from home.models import Data
+from home.views import normalisasi
 
 
 def calculate_naivebayes(split, tahun):
@@ -103,23 +104,26 @@ def get_normalisasi(tahun):
 
     # Mengambil data dari urutan ke 5 sampai ke 10 
     # variabel x merupakan parameter data 
-    x = df.iloc[:, 5:10]
+    # x = df.iloc[:, 5:10]
 
     # variabel y merupakan label kelas yang sudah dirubah menjadi angka
     y = df['label_kelas']
 
+    # Normalisasi
+    x = normalisasi.get_normalisasi(tahun)['data_normalisasi']
+
     # Proses preprocessing
 
     # variabel proses dari StandarScaler
-    scaler = StandardScaler()
+    # scaler = StandardScaler()
 
     # menghitung nilai rataan dan standar deviasi dari data variabel x 
     # untuk NANTI-nya digunakan saat proses scaling. 
     # Ia hanya menghitung nilai rataan dan standar deviasi saja
-    scaler.fit(x)
+    # scaler.fit(x)
 
     # hasil perhitungan rataan dan standar deviasi sebelumnya (dari ‘fit’) untuk diterapkan ke data
-    x = scaler.transform(x)
+    # x = scaler.transform(x)
 
     # Membuat array untuk menyimpan variabel data x dan y 
     data = {

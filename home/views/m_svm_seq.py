@@ -12,6 +12,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 from home.models import Data
+from home.views import normalisasi
 
 
 def calculate_svm_seq(tahun, const, max_iterasi, gamma, split):
@@ -100,22 +101,25 @@ def get_normalisasi(tahun):
 
     # Mengambil data dari urutan ke 5 sampai ke 10 
     # variabel x merupakan parameter data, mengambil parameter data  
-    x = df.iloc[:, 5:10]
+    # x = df.iloc[:, 5:10]
 
     # variabel y merupakan label kelas yang sudah dirubah menjadi angka
     y = df['label_kelas']
 
+    # Normalisasi
+    x = normalisasi.get_normalisasi(tahun)['data_normalisasi']
+
     # Proses preprocessing
 
     # variabel proses dari StandarScaler
-    scaler = StandardScaler()
+    # scaler = StandardScaler()
 
     # menghitung nilai rataan dan standar deviasi dari data variabel x 
     # untuk NANTI-nya digunakan saat proses scaling. 
-    scaler.fit(x)
+    # scaler.fit(x)
 
     # hasil perhitungan rataan dan standar deviasi sebelumnya (dari ‘fit’) untuk diterapkan ke data
-    x = scaler.transform(x)
+    # x = scaler.transform(x)
 
     # Membuat array untuk menyimpan variabel data x dan y 
     data = {

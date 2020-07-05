@@ -14,7 +14,7 @@ from home.models import Data
 def calculate_decisiontree(split, tahun):
 
     # Proses pengambilan data 
-    df = pd.DataFrame.from_records(Data.objects.all().values())
+    df = pd.DataFrame.from_records(Data.objects.filter(tahun_smstr=tahun).values())
 
     # Merubah naman kolom label_kelas -> Decision
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
@@ -34,12 +34,12 @@ def calculate_decisiontree(split, tahun):
     x = df.iloc[:, 5:10].to_numpy()
     y = df['Decision']
 
-     # Membuat array untuk menyimpan data dari perulangan kfold
+    # Membuat array untuk menyimpan data dari perulangan kfold
     scores = []             # Menyimpan hasil akurasi masing-masing iterasi
     data_evaluasi = []      # Menyimpan data evaluasi masing-masing iterasi
 
     # Memanggil fungsi stratifiedKfold dengan parameter input nilai K
-    cv = StratifiedKFold(n_splits=split)
+    cv = StratifiedKFold(n_splits=split, shuffle=True, random_state=42)
 
     # Iterasi / pembagian data
     # Membuat indeks untuk membagi data menjadi data training dan testing
@@ -63,30 +63,31 @@ def calculate_decisiontree(split, tahun):
 
         # Hasil evaluasi masing-masing label
         # Dengan evaluasi precision, recall, dan f1 score
-        data1 = {
-            'label': 'Berkembang',
-            'precision': classification['Berkembang']['precision'],
-            'recall': classification['Berkembang']['recall'],
-            'f1_score': classification['Berkembang']['f1-score']
-        }
-        data2 = {
-            'label': 'Belum Berkembang',
-            'precision': classification['Belum Berkembang']['precision'],
-            'recall': classification['Belum Berkembang']['recall'],
-            'f1_score': classification['Belum Berkembang']['f1-score']
-        }
+        evaluasi = []
+        if 'Berkembang' in classification:
+            data1 = {
+                'label': 'Berkembang',
+                'precision': classification['Berkembang']['precision'],
+                'recall': classification['Berkembang']['recall'],
+                'f1_score': classification['Berkembang']['f1-score']
+            }
+            evaluasi.append(data1)
 
-        classification['Berkembang'] = data1
-        classification['Belum Berkembang'] = data2
+        if 'Belum Berkembang' in classification:
+            data2 = {
+                'label': 'Belum Berkembang',
+                'precision': classification['Belum Berkembang']['precision'],
+                'recall': classification['Belum Berkembang']['recall'],
+                'f1_score': classification['Belum Berkembang']['f1-score']
+            }
+            evaluasi.append(data2)
 
-        evaluasi = [classification['Berkembang'], classification['Belum Berkembang']]
         data_evaluasi.append({
             'evaluasi': evaluasi,
             'accuracy': classification['accuracy']
         })
 
         scores.append(classification['accuracy'])
-
 
     data_svm = {
         'scores': scores,

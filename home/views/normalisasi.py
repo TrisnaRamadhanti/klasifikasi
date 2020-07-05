@@ -1,16 +1,23 @@
+import numpy as np
 from home.models import Data
-import logging
 
 
-def get_normalisasi():
-    listdata = Data.objects.all()
-    list_namaprodi = Data.objects.values_list('nama_prodi', flat=True)
-    list_peminatprodi = Data.objects.values_list('peminat_prodi', flat=True)
-    list_rerataipk = Data.objects.values_list('rerata_ipk', flat=True)
-    list_kelulusan = Data.objects.values_list('kelulusan', flat=True)
-    list_jamkehadirandosen = Data.objects.values_list('jam_kehadiran_dosen', flat=True)
-    list_reratanilaidosen = Data.objects.values_list('rerata_nilai_dosen', flat=True)
-    list_labelkelas = Data.objects.values_list('label_kelas', flat=True)
+def get_normalisasi(tahun=None):
+
+    if tahun is None:
+        listdata = Data.objects.all()
+        list_peminatprodi = Data.objects.values_list('peminat_prodi', flat=True)
+        list_rerataipk = Data.objects.values_list('rerata_ipk', flat=True)
+        list_kelulusan = Data.objects.values_list('kelulusan', flat=True)
+        list_jamkehadirandosen = Data.objects.values_list('jam_kehadiran_dosen', flat=True)
+        list_reratanilaidosen = Data.objects.values_list('rerata_nilai_dosen', flat=True)
+    else:
+        listdata = Data.objects.filter(tahun_smstr=tahun)
+        list_peminatprodi = listdata.values_list('peminat_prodi', flat=True)
+        list_rerataipk = listdata.values_list('rerata_ipk', flat=True)
+        list_kelulusan = listdata.values_list('kelulusan', flat=True)
+        list_jamkehadirandosen = listdata.values_list('jam_kehadiran_dosen', flat=True)
+        list_reratanilaidosen = listdata.values_list('rerata_nilai_dosen', flat=True)
 
     minvalue = {
         'peminatprodi': min([float(i) for i in list_peminatprodi]),
@@ -28,7 +35,9 @@ def get_normalisasi():
         'reratanilaidosen': max([float(i) for i in list_reratanilaidosen])
     }
 
-    n_data_normalisasi = []
+    data_normalisasi_view = []
+    data_normalisasi = []
+
     n_peminatprodi = []
     n_rerataipk = []
     n_kelulusan = []
@@ -52,37 +61,43 @@ def get_normalisasi():
             'reratanilaidosen': 0,
             'label': label
         }
-        n_data_normalisasi.append(data)
+        data_normalisasi_view.append(data)
 
     for i, x in enumerate(list_peminatprodi):
         n = (float(x) - minvalue['peminatprodi']) / (maxvalue['peminatprodi'] - minvalue['peminatprodi'])
         n_peminatprodi.append(n)
-        n_data_normalisasi[i]['peminatprodi'] = float(n)
+        data_normalisasi_view[i]['peminatprodi'] = float(n)
+        data_normalisasi.append([float(n), 0, 0, 0, 0])
 
     for i, x in enumerate(list_rerataipk):
         n = (float(x) - minvalue['rerataipk']) / (maxvalue['rerataipk'] - minvalue['rerataipk'])
         n_rerataipk.append(n)
-        n_data_normalisasi[i]['rerataipk'] = float(n)
+        data_normalisasi_view[i]['rerataipk'] = float(n)
+        data_normalisasi[i][1] = float(n)
 
     for i, x in enumerate(list_kelulusan):
         n = (float(x) - minvalue['kelulusan']) / (maxvalue['kelulusan'] - minvalue['kelulusan'])
         n_kelulusan.append(n)
-        n_data_normalisasi[i]['kelulusan'] = float(n)
+        data_normalisasi_view[i]['kelulusan'] = float(n)
+        data_normalisasi[i][2] = float(n)
 
     for i, x in enumerate(list_jamkehadirandosen):
         n = (float(x) - minvalue['jamkehadirandosen']) / (maxvalue['jamkehadirandosen'] - minvalue['jamkehadirandosen'])
         n_jamkehadirandosen.append(n)
-        n_data_normalisasi[i]['jamkehadirandosen'] = float(n)
+        data_normalisasi_view[i]['jamkehadirandosen'] = float(n)
+        data_normalisasi[i][3] = float(n)
 
     for i, x in enumerate(list_reratanilaidosen):
         n = (float(x) - minvalue['reratanilaidosen']) / (maxvalue['reratanilaidosen'] - minvalue['reratanilaidosen'])
         n_reratanilaidosen.append(n)
-        n_data_normalisasi[i]['reratanilaidosen'] = float(n)
+        data_normalisasi_view[i]['reratanilaidosen'] = float(n)
+        data_normalisasi[i][4] = float(n)
 
     # End Normalisasi
 
-    data_normalisasi = {
-        'n_data_normalisasi': n_data_normalisasi
+    normalisasi = {
+        'data_normalisasi_view': data_normalisasi_view,
+        'data_normalisasi': np.asarray(data_normalisasi)
     }
 
-    return data_normalisasi
+    return normalisasi

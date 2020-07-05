@@ -7,11 +7,11 @@
 
 <!-- Page content -->
 <div class="container-fluid mt--7">
-    
+
     <div class="row">
         <div class="col">
             <font color="white" size = "5px">
-            Metode J48 DT Non Normalisasi 
+            Metode SVM - Sequential Training Non Normalisasi  
             </font>
             <br>
             <br>
@@ -39,15 +39,16 @@
                     </form>
                 </div>
                 </div>
+
                 <br/>
                 <br/>
 
                 <div class="col-md-12" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
                     <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="table-responsive">
-                            <h2 style="margin: 12px;"><b>Evaluasi Metode</b></h2>
-                            <br/>
+                    <div class="table-responsive">
+                        <h2 style="margin: 12px;"><b>Evaluasi Metode</b></h2>
+                        <br/>
                             {% for data in data.data_evaluasi %}
                             <br/>
                             <h3 style="margin: 12px;"><b>Iterasi {{ forloop.counter }}</b></h3>

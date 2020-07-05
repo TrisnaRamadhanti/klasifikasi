@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from home.forms import TrainingDecissionTreeForm
-from home.models import TrainingDecissionTree
-from home.views import m_decissiontree_nonNor
+from home.forms import TrainingNaiveBayesForm
+from home.models import TrainingNaiveBayes
+from home.views import m_naivebayes_nonNor
 
 
 class IndexView(ListView):
-    template_name = 'home_decissiontree_nonNor.html'
+    template_name = 'home_naivebayes_nonNor.html'
     context_object_name = 'data'
 
     def get_queryset(self, **kwargs):
@@ -15,15 +15,15 @@ class IndexView(ListView):
         tahun = self.kwargs['tahun']
 
         try:
-            data = TrainingDecissionTree.objects.get(id='1')
+            data = TrainingNaiveBayes.objects.get(id='1')
             if data is None:
-                form = TrainingDecissionTreeForm()
+                form = TrainingNaiveBayesForm()
             else:
-                form = TrainingDecissionTreeForm(initial={
+                form = TrainingNaiveBayesForm(initial={
                     'k_fold': data.k_fold
                 })
-        except TrainingDecissionTree.DoesNotExist:
-            form = TrainingDecissionTreeForm()
+        except TrainingNaiveBayes.DoesNotExist:
+            form = TrainingNaiveBayesForm()
 
         context = {
             'tahun': tahun,
@@ -42,21 +42,22 @@ class IndexView(ListView):
 
             tahun = self.kwargs['tahun']
 
-            form = TrainingDecissionTreeForm(request.POST)
+            form = TrainingNaiveBayesForm(request.POST)
 
             if form.is_valid():
                 k_fold = int(form.cleaned_data['k_fold'])
 
                 try:
-                    param = TrainingDecissionTree.objects.get(id='1')
-                except TrainingDecissionTree.DoesNotExist:
-                    param = TrainingDecissionTree()
+                    param = TrainingNaiveBayes.objects.get(id='1')
+                except TrainingNaiveBayes.DoesNotExist:
+                    param = TrainingNaiveBayes()
                     param.id = '1'
 
                 param.k_fold = k_fold
                 param.save()
 
-                data_training = m_decissiontree_nonNor.calculate_decisiontree(k_fold, tahun)
+                data_training = m_naivebayes_nonNor.calculate_naivebayes(k_fold, tahun)
+                
                 scores = data_training['scores']
                 scores_mean = data_training['scores_mean']
                 data_evaluasi = data_training['data_evaluasi']

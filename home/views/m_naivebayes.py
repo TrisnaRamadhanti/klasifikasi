@@ -16,7 +16,7 @@ def calculate_naivebayes(split, tahun):
 
     # Membuat variabel untuk memanggil data dari fungsi get_normalisasi()
     # Data hasil normalisasi
-    data = get_normalisasi()
+    data = get_normalisasi(tahun)
 
     # Deklarasi variabel 
     x = data['x']
@@ -31,7 +31,7 @@ def calculate_naivebayes(split, tahun):
     data_evaluasi = []      # Menyimpan data evaluasi masing-masing iterasi
 
     # Memanggil fungsi stratifiedKfold dengan parameter input nilai K
-    cv = StratifiedKFold(n_splits=split)
+    cv = StratifiedKFold(n_splits=split, shuffle=True, random_state=42)
 
     # Iterasi / pembagian data
     # Membuat indeks untuk membagi data menjadi data training dan testing 
@@ -53,25 +53,25 @@ def calculate_naivebayes(split, tahun):
 
         # Hasil evaluasi masing-masing label
         # Dengan evaluasi precision, recall, dan f1 score
-        data1 = {
-            'label': 'Berkembang',
-            'precision': classification['1']['precision'],
-            'recall': classification['1']['recall'],
-            'f1_score': classification['1']['f1-score'],
-        }
-        data2 = {
-            'label': 'Belum Berkembang',
-            'precision': classification['-1']['precision'],
-            'recall': classification['-1']['recall'],
-            'f1_score': classification['-1']['f1-score']
-        }
+        evaluasi = []
 
-        # Membuat variabel array yang berisikan data hasil evaluasi 
-        # masing-masing label
-        classification['1'] = data1
-        classification['-1'] = data2
+        if '1' in classification:
+            data1 = {
+                'label': 'Berkembang',
+                'precision': classification['1']['precision'],
+                'recall': classification['1']['recall'],
+                'f1_score': classification['1']['f1-score'],
+            }
+            evaluasi.append(data1)
 
-        evaluasi = [classification['1'], classification['-1']]
+        if '-1' in classification:
+            data2 = {
+                'label': 'Belum Berkembang',
+                'precision': classification['-1']['precision'],
+                'recall': classification['-1']['recall'],
+                'f1_score': classification['-1']['f1-score']
+            }
+            evaluasi.append(data2)
 
         # Menambahkan objek ke list 
         # Menambahkan elemen pada indeks terakhir
@@ -79,8 +79,8 @@ def calculate_naivebayes(split, tahun):
             'evaluasi': evaluasi,
             'accuracy': classification['accuracy']
         })
-        
-        # Method hasil akurasi dengan parameter data testing dan label data testing 
+
+        # Method hasil akurasi dengan parameter data testing dan label data testing
         scores.append(modelnb.score(x_test, y_test))
 
     data_naive_bayes = {
@@ -94,7 +94,7 @@ def calculate_naivebayes(split, tahun):
 
 # Fungsi untuk normalisasi data 
 
-def get_normalisasi():
+def get_normalisasi(tahun):
 
     df = pd.DataFrame.from_records(Data.objects.filter(tahun_smstr=tahun).values())
 

@@ -1,0 +1,92 @@
+{% extends 'home_base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="header bg-green pb-8 pt-5 pt-md-4"></div>
+
+<!-- Page content -->
+<div class="container-fluid mt--7">
+
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3>Input Paramater Tahun {{ data.tahun }}</h3>
+                </div>
+
+                <div class="table-responsive">
+                    <form action="" method="post" class="form-horizontal" novalidate style="margin: 20px">
+                        {% csrf_token %}
+                        {% for field in data.form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-primary btn-sm" style="height: 40px; width: 100px" id="btn_proses_training">
+                            PROSES
+                        </button>
+                    </form>
+                </div>
+                </div>
+                <br/>
+                <br/>
+
+                <div class="col-md-12" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
+                    <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="table-responsive">
+                            <h2 style="margin: 12px;"><b>Evaluasi Metode</b></h2>
+                            <br/>
+                            {% for data in data.data_evaluasi %}
+                            <br/>
+                            <h3 style="margin: 12px;"><b>Iterasi {{ forloop.counter }}</b></h3>
+                            <br/>
+                            <table class="table align-items-center table-flush">
+                                <thead>
+                                <tr>
+                                    <th width="10%"><b>Label</b></th>
+                                    <th width="30%"><b>Precision</b></th>
+                                    <th width="30%"><b>Recall</b></th>
+                                    <th width="30%"><b>F1-Score</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for dt in data.evaluasi %}
+                                <tr>
+                                    <td>{{ dt.label }}</td>
+                                    <td>{{ dt.precision }}</td>
+                                    <td>{{ dt.recall }}</td>
+                                    <td>{{ dt.f1_score }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <h4 style="margin: 12px;"><b>Accuracy : {{ data.accuracy }}</b></h4>
+                            {% endfor %}
+                        </div>
+                        <br/>
+                        <br/>
+                        <h4 style="margin: 12px;"><b>Rata-rata Akurasi:</b></h4>
+                        <h3 style="margin: 12px;"><b>{{ data.scores_mean }}</b></h3>
+                    </div>
+                </div>
+
+                <br/>
+                <br/>
+
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+
+</div>
+
+{% endblock %}

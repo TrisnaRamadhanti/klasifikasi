@@ -86,7 +86,7 @@
           <li class="nav-item">
             <!-- <a class="nav-link" href="<?php //echo base_url('Jadwal'); ?>"> -->
             <a class="nav-link" data-toggle="collapse" data-target="#demo">
-              <i class="fas fa-clipboard"></i> Klasifikasi
+              <i class="fas fa-clipboard"></i> Klasifikasi (Normalisasi Data)
             </a>
             <ul id="demo" class="collapse">
                 <li style="list-style-type: none;">
@@ -169,6 +169,114 @@
                     <i class="fas fa-clipboard text-grey"></i> Decission Tree C4.5
                   </a>
                   <ul id="dt" class="collapse">
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2014</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2015</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2016</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2017</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2018</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2019</a>
+                      </li>
+                  </ul>
+                </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="<?php //echo base_url('Jadwal'); ?>"> -->
+            <a class="nav-link" data-toggle="collapse" data-target="#demo2">
+              <i class="fas fa-clipboard"></i> Klasifikasi (Non Normalisasi Data)
+            </a>
+            <ul id="demo2" class="collapse">
+                <li style="list-style-type: none;">
+                  <a class="nav-link" data-toggle="collapse" data-target="#nb2">
+                    <i class="fas fa-clipboard text-grey"></i> Naive Bayes
+                  </a>
+                  <ul id="nb2" class="collapse">
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2014</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2015 %}"><i class="fas fa-clipboard text-grey"></i>2015</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2016 %}"><i class="fas fa-clipboard text-grey"></i>2016</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2017 %}"><i class="fas fa-clipboard text-grey"></i>2017</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2018 %}"><i class="fas fa-clipboard text-grey"></i>2018</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:naivebayes' 2019 %}"><i class="fas fa-clipboard text-grey"></i>2019</a>
+                      </li>
+                  </ul>
+                </li>
+                <li style="list-style-type: none;">
+                  <a class="nav-link" data-toggle="collapse" data-target="#smo2">
+                    <i class="fas fa-clipboard text-grey"></i> SVM - SMO
+                  </a>
+                  <ul id="smo2" class="collapse">
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2014</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2015 %}"><i class="fas fa-clipboard text-grey"></i>2015</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2016 %}"><i class="fas fa-clipboard text-grey"></i>2016</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2017 %}"><i class="fas fa-clipboard text-grey"></i>2017</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2018 %}"><i class="fas fa-clipboard text-grey"></i>2018</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsmo' 2019 %}"><i class="fas fa-clipboard text-grey"></i>2019</a>
+                      </li>
+                  </ul>
+                </li>
+                <li style="list-style-type: none;">
+                  <a class="nav-link" data-toggle="collapse" data-target="#seq2">
+                    <i class="fas fa-clipboard text-grey"></i> SVM - Sequential
+                  </a>
+                  <ul id="seq2" class="collapse">
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2014</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2015 %}"><i class="fas fa-clipboard text-grey"></i>2015</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2016 %}"><i class="fas fa-clipboard text-grey"></i>2016</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2017 %}"><i class="fas fa-clipboard text-grey"></i>2017</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2018 %}"><i class="fas fa-clipboard text-grey"></i>2018</a>
+                      </li>
+                      <li style="list-style-type: none;">
+                        <a class="nav-link" href="{% url 'home:svmsequential_nonNor' 2019 %}"><i class="fas fa-clipboard text-grey"></i>2019</a>
+                      </li>
+                  </ul>
+                </li>
+                <li style="list-style-type: none;">
+                  <a class="nav-link" data-toggle="collapse" data-target="#dt2">
+                    <i class="fas fa-clipboard text-grey"></i> Decission Tree C4.5
+                  </a>
+                  <ul id="dt2" class="collapse">
                       <li style="list-style-type: none;">
                         <a class="nav-link" href="{% url 'home:decissiontree' 2014 %}"><i class="fas fa-clipboard text-grey"></i>2014</a>
                       </li>

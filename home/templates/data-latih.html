@@ -47,13 +47,13 @@
                   <a href="{% url 'home:detail' data.pk %}">{{ data.label_kelas }}</a>
                 </td>
                 <td>
-                    <a href="{% url 'home:edit' data.pk %}">
-                      <img src="{% static 'Gambar/icon/edit2.png' %}" title='edit' width="10%" height="6%" >
-                    </a>
-                    &nbsp
-                    <a href="{% url 'home:delete' data.pk %}">
-                      <img src="{% static 'Gambar/icon/delete.png' %}" title='hapus' width="10%" height="6%" >
-                    </a>
+                  <a href="{% url 'home:edit' data.pk %}" i class="fas fa-edit text-grey">
+                    <!--<img src="http://polinema20.store/assets_prodiunisma/Gambar/icon/edit2.png" title='edit' width="10%" height="6%" >-->
+                  </a>
+                  &nbsp
+                 <a href="{% url 'home:delete' data.pk %}" i class="	fas fa-window-close text-grey">
+                    <!--<img src="http://polinema20.store/assets_prodiunisma/Gambar/icon/delete.png" title='hapus' width="10%" height="6%" >-->
+                  </a>
                 </td>
               </tr>
               {% endfor %}

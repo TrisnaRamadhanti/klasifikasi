@@ -51,6 +51,7 @@ class IndexView(ListView):
                 param.save()
 
                 data_training = m_naivebayes.calculate_naivebayes(k_fold)
+                
                 scores = data_training['scores']
                 scores_mean = data_training['scores_mean']
                 data_evaluasi = data_training['data_evaluasi']

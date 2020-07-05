@@ -84,38 +84,39 @@ def delete(request, pk, template_name='confirm_delete.html'):
         return redirect('/login/')
 
 
-def save_excel_to_db(data_excel):
-    for d_sheet in data_excel:
-        sheet = data_excel[d_sheet]
-        if len(sheet) > 1:  # data sheet
-            for data in sheet:
-                if len(data) > 0:  # check row tidak kosong
-                    if str(data[0]).lower() != 'no':  # check bukan header
 
-                        # Check jika ada data yg kosong
-                        if len(data) < 5:
-                            i = len(data)
-                            while i < 5:
-                                data.append('')
-                                i += 1
+# def save_excel_to_db(data_excel):
+#     for d_sheet in data_excel:
+#         sheet = data_excel[d_sheet]
+#         if len(sheet) > 1:  # data sheet
+#             for data in sheet:
+#                 if len(data) > 0:  # check row tidak kosong
+#                     if str(data[0]).lower() != 'no':  # check bukan header
 
-                        # Simpan data
-                        no = data[0]
-                        db = Data.objects.filter(no=str(no))
+#                         # Check jika ada data yg kosong
+#                         if len(data) < 5:
+#                             i = len(data)
+#                             while i < 5:
+#                                 data.append('')
+#                                 i += 1
 
-                        if len(db) == 0:
-                            Data.objects.create(
-                                no=data[0],
-                                persen_ch4=data[1],
-                                persen_c2h4=data[2],
-                                persen_c2h2=data[3],
-                                fault=data[4]
-                            )
-                        else:
-                            dt = db[0]
-                            dt.no = data[0]
-                            dt.persen_ch4 = data[1]
-                            dt.persen_c2h4 = data[2]
-                            dt.persen_c2h2 = data[3]
-                            dt.fault = data[4]
-                            dt.save()
+#                         # Simpan data
+#                         no = data[0]
+#                         db = Data.objects.filter(no=str(no))
+
+#                         if len(db) == 0:
+#                             Data.objects.create(
+#                                 no=data[0],
+#                                 persen_ch4=data[1],
+#                                 persen_c2h4=data[2],
+#                                 persen_c2h2=data[3],
+#                                 fault=data[4]
+#                             )
+#                         else:
+#                             dt = db[0]
+#                             dt.no = data[0]
+#                             dt.persen_ch4 = data[1]
+#                             dt.persen_c2h4 = data[2]
+#                             dt.persen_c2h2 = data[3]
+#                             dt.fault = data[4]
+#                             dt.save()

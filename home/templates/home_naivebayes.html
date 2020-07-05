@@ -12,7 +12,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3>Input Paramater</h3>
+                    <h3>Input Paramater Tahun {{ data.tahun }}</h3>
                 </div>
 
                 <div class="table-responsive">
@@ -34,26 +34,10 @@
                     </form>
                 </div>
             </div>
+           <br/>
             <br/>
 
             <div class="card shadow" id="div_proses_training" style="margin: 0px; display: {{ data.display }}">
-                <div class="card-header" style="height: 40px">
-                    <a href="#">
-                        <button class="btn btn-primary btn-sm" style="height: 40px; width: 100px">
-                            EVALUASI
-                        </button>
-                    </a>
-                    &nbsp
-                    <a href="#">
-                        <button class="btn btn-primary btn-sm" style="height: 40px; width: 100px">
-                            NORMALISASI
-                        </button>
-                    </a>
-                </div>
-
-                <br/>
-                <br/>
-
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="table-responsive">
@@ -90,29 +74,29 @@
                 </div>
 
                         <div class="table-responsive">
-                    <h2 style="margin: 12px;"><b>Hasil Akurasi</b></h2>
-                    <br/>
-                    <table class="table align-items-center table-flush">
-                        <thead>
-                        <tr>
-                            <th width="10%"><b>Iterasi</b></th>
-                            <th width="90%"><b>Hasil Akurasi</b></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for data in data.scores %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ data }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            <h2 style="margin: 12px;"><b>Hasil Akurasi</b></h2>
+                            <br/>
+                            <table class="table align-items-center table-flush">
+                                <thead>
+                                <tr>
+                                    <th width="10%"><b>Iterasi</b></th>
+                                    <th width="90%"><b>Hasil Akurasi</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for data in data.scores %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ data }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
 
-                    <br/>
-                    <h4 style="margin: 12px;"><b>Rata-rata Akurasi:</b></h4>
-                    <h3 style="margin: 12px;"><b>{{ data.scores_mean }}</b></h3>
-                </div>
+                            <br/>
+                            <h4 style="margin: 12px;"><b>Rata-rata Akurasi:</b></h4>
+                            <h3 style="margin: 12px;"><b>{{ data.scores_mean }}</b></h3>
+                        </div>
                     </div>
                     <br/>
                     <br/>

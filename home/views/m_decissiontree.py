@@ -11,10 +11,14 @@ from sklearn.model_selection import StratifiedKFold
 from home.models import Data
 
 
-def calculate_decisiontree(split):
+def calculate_decisiontree(split, tahun):
 
+<<<<<<< HEAD
     # Proses pengambilan data 
     df = pd.DataFrame.from_records(Data.objects.all().values())
+=======
+    df = pd.DataFrame.from_records(Data.objects.filter(tahun_smstr=tahun).values())
+>>>>>>> 892d572af493c3d4e65d2433682b61a564f3bd78
 
     # Merubah naman kolom label_kelas -> Decision
     df.rename(columns={'label_kelas': 'Decision'}, inplace=True)
@@ -61,6 +65,7 @@ def calculate_decisiontree(split):
         # Dengan parameter : label testing, hasil prediksi, output_dict
         classification = classification_report(y_test, predictions_list, output_dict=True)
 
+<<<<<<< HEAD
         # Hasil evaluasi masing-masing label
         # Dengan evaluasi precision, recall, dan f1 score
         data1 = {
@@ -80,6 +85,28 @@ def calculate_decisiontree(split):
         classification['Belum Berkembang'] = data2
 
         evaluasi = [classification['Berkembang'], classification['Belum Berkembang']]
+=======
+        evaluasi = []
+
+        if 'Berkembang' in classification:
+            data1 = {
+                'label': 'Berkembang',
+                'precision': classification['Berkembang']['precision'],
+                'recall': classification['Berkembang']['recall'],
+                'f1_score': classification['Berkembang']['f1-score']
+            }
+            evaluasi.append(data1)
+
+        if 'Belum Berkembang' in classification:
+            data2 = {
+                'label': 'Belum Berkembang',
+                'precision': classification['Belum Berkembang']['precision'],
+                'recall': classification['Belum Berkembang']['recall'],
+                'f1_score': classification['Belum Berkembang']['f1-score']
+            }
+            evaluasi.append(data2)
+
+>>>>>>> 892d572af493c3d4e65d2433682b61a564f3bd78
         data_evaluasi.append({
             'evaluasi': evaluasi,
             'accuracy': classification['accuracy']

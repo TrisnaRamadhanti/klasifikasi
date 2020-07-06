@@ -46,12 +46,12 @@ def calculate_svm_smo(tahun, epsilon, C, split):
 
         # Proses training
         # Terdapat pada dokumentasi c4.5
-        prob = svm_problem(np.array(y_train), np.array(x_train))
+        prob = svm_problem(np.array(y_train), np.array(x_train).astype(float))
 
         m = svm_train(prob, param)
 
         # hasil prediksi data testing
-        predictions = svm_predict(np.array(y_test), np.array(x_test), m)
+        predictions = svm_predict(np.array(y_test), np.array(x_test).astype(float), m)
 
         # Untuk mendapatkan evaluasi dari klasifikasi
         # Dengan parameter : label testing, hasil prediksi, output_dict

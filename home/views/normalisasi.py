@@ -64,34 +64,46 @@ def get_normalisasi(tahun=None):
         data_normalisasi_view.append(data)
 
     for i, x in enumerate(list_peminatprodi):
-        n = (float(x) - minvalue['peminatprodi']) / (maxvalue['peminatprodi'] - minvalue['peminatprodi'])
-        n_peminatprodi.append(n)
-        data_normalisasi_view[i]['peminatprodi'] = float(n)
-        data_normalisasi.append([float(n), 0, 0, 0, 0])
+        minmax = maxvalue['peminatprodi'] - minvalue['peminatprodi']
+        if minmax > 0:
+            n = (float(x) - minvalue['peminatprodi']) / minmax
+            n_peminatprodi.append(n)
+            data_normalisasi_view[i]['peminatprodi'] = float(n)
+            data_normalisasi.append([float(n), 0, 0, 0, 0])
+        else:
+            data_normalisasi.append([0, 0, 0, 0, 0])
 
     for i, x in enumerate(list_rerataipk):
-        n = (float(x) - minvalue['rerataipk']) / (maxvalue['rerataipk'] - minvalue['rerataipk'])
-        n_rerataipk.append(n)
-        data_normalisasi_view[i]['rerataipk'] = float(n)
-        data_normalisasi[i][1] = float(n)
+        minmax = maxvalue['rerataipk'] - minvalue['rerataipk']
+        if minmax > 0:
+            n = (float(x) - minvalue['rerataipk']) / minmax
+            n_rerataipk.append(n)
+            data_normalisasi_view[i]['rerataipk'] = float(n)
+            data_normalisasi[i][1] = float(n)
 
     for i, x in enumerate(list_kelulusan):
-        n = (float(x) - minvalue['kelulusan']) / (maxvalue['kelulusan'] - minvalue['kelulusan'])
-        n_kelulusan.append(n)
-        data_normalisasi_view[i]['kelulusan'] = float(n)
-        data_normalisasi[i][2] = float(n)
+        minmax = maxvalue['kelulusan'] - minvalue['kelulusan']
+        if minmax > 0:
+            n = (float(x) - minvalue['kelulusan']) / minmax
+            n_kelulusan.append(n)
+            data_normalisasi_view[i]['kelulusan'] = float(n)
+            data_normalisasi[i][2] = float(n)
 
     for i, x in enumerate(list_jamkehadirandosen):
-        n = (float(x) - minvalue['jamkehadirandosen']) / (maxvalue['jamkehadirandosen'] - minvalue['jamkehadirandosen'])
-        n_jamkehadirandosen.append(n)
-        data_normalisasi_view[i]['jamkehadirandosen'] = float(n)
-        data_normalisasi[i][3] = float(n)
+        minmax = maxvalue['jamkehadirandosen'] - minvalue['jamkehadirandosen']
+        if minmax > 0:
+            n = (float(x) - minvalue['jamkehadirandosen']) / minmax
+            n_jamkehadirandosen.append(n)
+            data_normalisasi_view[i]['jamkehadirandosen'] = float(n)
+            data_normalisasi[i][3] = float(n)
 
     for i, x in enumerate(list_reratanilaidosen):
-        n = (float(x) - minvalue['reratanilaidosen']) / (maxvalue['reratanilaidosen'] - minvalue['reratanilaidosen'])
-        n_reratanilaidosen.append(n)
-        data_normalisasi_view[i]['reratanilaidosen'] = float(n)
-        data_normalisasi[i][4] = float(n)
+        minmax = maxvalue['reratanilaidosen'] - minvalue['reratanilaidosen']
+        if minmax > 0:
+            n = (float(x) - minvalue['reratanilaidosen']) / minmax
+            n_reratanilaidosen.append(n)
+            data_normalisasi_view[i]['reratanilaidosen'] = float(n)
+            data_normalisasi[i][4] = float(n)
 
     # End Normalisasi
 

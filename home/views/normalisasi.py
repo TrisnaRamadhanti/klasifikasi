@@ -69,9 +69,16 @@ def get_normalisasi(tahun=None):
             n = (float(x) - minvalue['peminatprodi']) / minmax
             n_peminatprodi.append(n)
             data_normalisasi_view[i]['peminatprodi'] = float(n)
-            data_normalisasi.append([float(n), 0, 0, 0, 0])
+
+            dn = data_normalisasi_view[i]['label']
+            if dn == '1':
+                db = 'Berkembang'
+            else:
+                db = 'Belum Berkembang'
+                
+            data_normalisasi.append([float(n), 0, 0, 0, 0, db])
         else:
-            data_normalisasi.append([0, 0, 0, 0, 0])
+            data_normalisasi.append([0, 0, 0, 0, 0, ''])
 
     for i, x in enumerate(list_rerataipk):
         minmax = maxvalue['rerataipk'] - minvalue['rerataipk']

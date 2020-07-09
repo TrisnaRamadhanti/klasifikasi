@@ -27,16 +27,22 @@ def calculate_decisiontree(split, tahun):
     df['rerata_nilai_dosen'] = df['rerata_nilai_dosen'].astype('float')
 
     # Normalisasi
-    # xNor = normalisasi.get_normalisasi(tahun)['data_normalisasi']
-    #
-    # x = pd.DataFrame(data=xNor[1:, 1:], index=df.iloc[1:, 0].to_numpy(), columns=xNor[0, 1:])
-    #
-    # print(x)
+    xNor = normalisasi.get_normalisasi(tahun)['data_normalisasi']
+
+    x = pd.DataFrame({
+        'peminat_prodi': xNor[:, 0],
+        'rerata_ipk': xNor[:, 1],
+        'kelulusan': xNor[:, 2],
+        'jam_kehadiran_dosen': xNor[:, 3],
+        'rerata_nilai_dosen': xNor[:, 4],
+        'Decision': xNor[:, 5]
+    })
 
     # Untuk setting library. dengan algoritma c4.5
     config = {'algorithm': 'C4.5'}
     # Untuk training modelnya 
     # Dengan parameter datanya 
+    # model = cf.fit(df.iloc[:, 5:11].copy(), config)
     model = cf.fit(x, config)
 
     x = df.iloc[:, 5:10].to_numpy()

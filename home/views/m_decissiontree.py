@@ -27,14 +27,14 @@ def calculate_decisiontree(split, tahun):
     df['rerata_nilai_dosen'] = df['rerata_nilai_dosen'].astype('float')
 
     # Normalisasi
-    xNor = normalisasi.get_normalisasi(tahun)['data_normalisasi']
+    xNor = normalisasi.get_normalisasi(tahun, True)['data_normalisasi']
 
     x = pd.DataFrame({
-        'peminat_prodi': xNor[:, 0],
-        'rerata_ipk': xNor[:, 1],
-        'kelulusan': xNor[:, 2],
-        'jam_kehadiran_dosen': xNor[:, 3],
-        'rerata_nilai_dosen': xNor[:, 4],
+        'peminat_prodi': xNor[:, 0].astype(float),
+        'rerata_ipk': xNor[:, 1].astype(float),
+        'kelulusan': xNor[:, 2].astype(float),
+        'jam_kehadiran_dosen': xNor[:, 3].astype(float),
+        'rerata_nilai_dosen': xNor[:, 4].astype(float),
         'Decision': xNor[:, 5]
     })
 

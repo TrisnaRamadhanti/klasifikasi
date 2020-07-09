@@ -2,7 +2,7 @@ import numpy as np
 from home.models import Data
 
 
-def get_normalisasi(tahun=None):
+def get_normalisasi(tahun=None, dt=False):
 
     if tahun is None:
         listdata = Data.objects.all()
@@ -70,15 +70,21 @@ def get_normalisasi(tahun=None):
             n_peminatprodi.append(n)
             data_normalisasi_view[i]['peminatprodi'] = float(n)
 
-            dn = data_normalisasi_view[i]['label']
-            if dn == '1':
-                db = 'Berkembang'
+            if dt:
+                dn = data_normalisasi_view[i]['label']
+                if dn == '1':
+                    db = 'Berkembang'
+                else:
+                    db = 'Belum Berkembang'
+
+                data_normalisasi.append([float(n), 0, 0, 0, 0, db])
             else:
-                db = 'Belum Berkembang'
-                
-            data_normalisasi.append([float(n), 0, 0, 0, 0, db])
+                data_normalisasi.append([float(n), 0, 0, 0, 0])
         else:
-            data_normalisasi.append([0, 0, 0, 0, 0, ''])
+            if dt:
+                data_normalisasi.append([0, 0, 0, 0, 0, ''])
+            else:
+                data_normalisasi.append([0, 0, 0, 0, 0])
 
     for i, x in enumerate(list_rerataipk):
         minmax = maxvalue['rerataipk'] - minvalue['rerataipk']

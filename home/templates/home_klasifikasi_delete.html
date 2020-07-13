@@ -1,0 +1,41 @@
+{% extends 'home_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="header bg-green pb-8 pt-5 pt-md-4"></div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="table-responsive">
+                        <div class="container-fluid">
+                            <br>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="alert alert-warning">
+                                            Are you sure you want to delete {{ object }}?
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <button type="submit" class="btn">
+                                        <img src="{% static 'Gambar/icon/delete.png' %}" width="8%" height="4%" >
+                                    </button>
+                                    <br />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+
+{% endblock %} 
+

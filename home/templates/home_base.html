@@ -305,16 +305,9 @@
 
           <li class="nav-item">
             <!-- <a class="nav-link" href="<?php //echo base_url('Jadwal'); ?>"> -->
-            <a class="nav-link" data-toggle="collapse" data-target="#klasifikasi">
-              <i class="fas fa-clipboard"></i> Hasil Klasifikasi Prodi J48DT
+            <a class="nav-link" href="{% url 'home:klasifikasi' %}">
+              <i class="fas fa-clipboard"></i> Klasifikasi Prodi Decission Tree C4.5
             </a>
-            <ul id="klasifikasi" class="collapse">
-                <li style="list-style-type: none;">
-                  <a class="nav-link" href="{% url 'home:klasifikasi' %}" data-toggle="" >
-                    <i class="fas fa-clipboard text-grey"></i> Tambah Data Prodi
-                  </a>
-                </li>
-            </ul>
           </li>
          
           <li class="nav-item">

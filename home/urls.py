@@ -45,4 +45,5 @@ urlpatterns = [
     path('klasifikasi/<int:pk>/', view_klasifikasi.DataDetailView.as_view(), name='klasifikasi_detail'),
     path('klasifikasi_create/', view_klasifikasi.create, name='klasifikasi_create'),
     path('klasifikasi_edit/<int:pk>/', view_klasifikasi.edit, name='klasifikasi_edit'),
+    path('klasifikasi_delete/<int:pk>/', view_klasifikasi.delete, name='klasifikasi_delete'),
 ]

@@ -1,0 +1,51 @@
+{% extends 'home_base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="header bg-green pb-8 pt-5 pt-md-4"> </div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="table-responsive">
+                        <div class="container-fluid"><br>
+                            <legend><font face = "Georgia"> Edit Data Perkembangan Prodi</font></legend><br>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <form method="post" novalidate>
+                                    {% csrf_token %}
+                                    {% for hidden_field in form.hidden_fields %}
+                                    {{ hidden_field }}
+                                    {% endfor %}
+                                    {% for field in form.visible_fields %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {% render_field field class="form-control" %}
+                                        {% if field.help_text %}
+                                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+
+                                    <br />
+
+                                    <button type="submit" class="btn bg-green"><font color = "white">SIMPAN</button>
+                                    <a class="btn bg-green" href="{% url 'home:klasifikasi' %}"><font color = "white">KEMBALI </font></a>
+
+                                    <br />
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+
+{% endblock %}

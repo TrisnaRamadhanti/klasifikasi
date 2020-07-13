@@ -1,0 +1,74 @@
+{% extends 'home_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="header bg-green pb-8 pt-5 pt-md-4"></div>
+
+<div class="container-fluid mt--7">
+
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="table-responsive">
+                        <div class="container-fluid"><br>
+                            <legend>
+                                <font face = "Georgia"> Detail Data Perkembangan Prodi </font>
+                            </legend>
+                            <br>
+                            <div class="content">
+                                <div class="form-group">
+                                    <label for="deskripsi">Kode Program Studi</label>
+                                    <p>{{ datatesting.kode_prodi }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi">Nama Program Studi</label>
+                                    <p>{{ datatesting.nama_prodi }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Tahun Semester </label>
+                                    <p>{{ datatesting.tahun_smstr }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Presentase Peminat Program Studi</label>
+                                    <p>{{ datatesting.peminat_prodi }} % </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata IPK</label>
+                                    <p>{{ datatesting.rerata_ipk }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Jumlah Lulusan</label>
+                                    <p>{{ datatesting.kelulusan }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata Jumlah Kehadiran Dosen</label>
+                                    <p>{{ datatesting.jam_kehadiran_dosen }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Rata-Rata Nilai Dosen</label>
+                                    <p>{{ datatesting.rerata_nilai_dosen }} </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ID_admin">Label Kelas</label>
+                                    <p>{{ datatesting.label_kelas }} </p>
+                                </div>
+                                <br />
+                                <br />
+                                <a class="btn bg-green" href="{% url 'home:klasifikasi' %}"><font color = "white">Kembali</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+
+</div>
+
+<div class="header bg-green pb-4 pt-5 pt-md-4"></div>
+
+{% endblock %}

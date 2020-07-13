@@ -1,13 +1,20 @@
 from django import forms
 from django.forms import TextInput
 
-from .models import Data
+from .models import Data, DataTesting
 
 
 class DataForm(forms.ModelForm):
     class Meta:
         model = Data
         fields = "__all__"
+
+
+class DataFormKlasifikasi(forms.ModelForm):
+    class Meta:
+        model = DataTesting
+        fields = ['semester_mulai', 'kode_prodi', 'tahun_smstr', 'nama_prodi', 'peminat_prodi', 'rerata_ipk', 'kelulusan',
+                  'jam_kehadiran_dosen', 'rerata_nilai_dosen']
 
 
 class TrainingSvmSeqForm(forms.Form):

@@ -42,4 +42,7 @@ urlpatterns = [
     path('naivebayes_nonNor/<int:tahun>/', view_naivebayes_nonNor.IndexView.as_view(), name='naivebayes_nonNor'),
 
     path('klasifikasi/', view_klasifikasi.IndexView.as_view(), name='klasifikasi'),
+    path('klasifikasi/<int:pk>/', view_klasifikasi.DataDetailView.as_view(), name='klasifikasi_detail'),
+    path('klasifikasi_create/', view_klasifikasi.create, name='klasifikasi_create'),
+    path('klasifikasi_edit/<int:pk>/', view_klasifikasi.edit, name='klasifikasi_edit'),
 ]

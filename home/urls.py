@@ -15,7 +15,8 @@ Including another URLconf
 """
 
 from django.urls import path
-from home.views import view_data, view_normalisasi, view_naivebayes, view_svm_seq, view_svm_smo, view_decissiontree, view_decissiontree_nonNor, view_svm_seq_nonNor, view_svm_smo_nonNor, view_naivebayes_nonNor
+from home.views import view_data, view_normalisasi, view_naivebayes, view_svm_seq, view_svm_smo, view_decissiontree, \
+    view_decissiontree_nonNor, view_svm_seq_nonNor, view_svm_smo_nonNor, view_naivebayes_nonNor, view_klasifikasi
 
 app_name = 'home'
 
@@ -39,4 +40,6 @@ urlpatterns = [
     path('svmsequential_nonNor/<int:tahun>/', view_svm_seq_nonNor.IndexView.as_view(), name='svmsequential_nonNor'),
     path('svmsmo_nonNor/<int:tahun>/', view_svm_smo_nonNor.IndexView.as_view(), name='svmsmo_nonNor'),
     path('naivebayes_nonNor/<int:tahun>/', view_naivebayes_nonNor.IndexView.as_view(), name='naivebayes_nonNor'),
+
+    path('klasifikasi/', view_klasifikasi.IndexView.as_view(), name='klasifikasi'),
 ]

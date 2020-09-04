@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2020 pada 00.20
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.4
+-- Generation Time: Sep 04, 2020 at 08:33 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account_profile`
+-- Table structure for table `account_profile`
 --
 
 CREATE TABLE `account_profile` (
@@ -34,42 +33,42 @@ CREATE TABLE `account_profile` (
   `last_name` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `account_profile`
+-- Dumping data for table `account_profile`
 --
 
 INSERT INTO `account_profile` (`id`, `first_name`, `last_name`, `user_id`, `username`) VALUES
-(1, 'q', 'q', 1, 'q');
+(1, 'admin', 'admin', 1, 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_group`
+-- Table structure for table `auth_group`
 --
 
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_group_permissions`
+-- Table structure for table `auth_group_permissions`
 --
 
 CREATE TABLE `auth_group_permissions` (
   `id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_permission`
+-- Table structure for table `auth_permission`
 --
 
 CREATE TABLE `auth_permission` (
@@ -77,10 +76,10 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `auth_permission`
+-- Dumping data for table `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
@@ -127,12 +126,20 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (41, 'Can add training svm smo', 11, 'add_trainingsvmsmo'),
 (42, 'Can change training svm smo', 11, 'change_trainingsvmsmo'),
 (43, 'Can delete training svm smo', 11, 'delete_trainingsvmsmo'),
-(44, 'Can view training svm smo', 11, 'view_trainingsvmsmo');
+(44, 'Can view training svm smo', 11, 'view_trainingsvmsmo'),
+(45, 'Can add training decission tree', 12, 'add_trainingdecissiontree'),
+(46, 'Can change training decission tree', 12, 'change_trainingdecissiontree'),
+(47, 'Can delete training decission tree', 12, 'delete_trainingdecissiontree'),
+(48, 'Can view training decission tree', 12, 'view_trainingdecissiontree'),
+(49, 'Can add data testing', 13, 'add_datatesting'),
+(50, 'Can change data testing', 13, 'change_datatesting'),
+(51, 'Can delete data testing', 13, 'delete_datatesting'),
+(52, 'Can view data testing', 13, 'view_datatesting');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_user`
+-- Table structure for table `auth_user`
 --
 
 CREATE TABLE `auth_user` (
@@ -147,70 +154,70 @@ CREATE TABLE `auth_user` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `auth_user`
+-- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$6lbUeZxGuLZ2$8SkSfBM31sfrL0dvShAq5BgFGVZJw9mN2SpfRt8Q4hQ=', '2020-06-12 10:39:59.305662', 0, 'q', 'q', 'q', '', 0, 1, '2020-05-15 22:27:24.710901');
+(1, 'pbkdf2_sha256$180000$CV3ezqeyvTwT$UHsHrkGfC3lGP8w+HR/L2MZRfERQbo+qbLnK6oiouPc=', '2020-08-15 07:23:07.884035', 0, 'admin', 'trisna', 'ramadhanti', '', 0, 1, '2020-03-10 03:40:28.760096');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_user_groups`
+-- Table structure for table `auth_user_groups`
 --
 
 CREATE TABLE `auth_user_groups` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth_user_user_permissions`
+-- Table structure for table `auth_user_user_permissions`
 --
 
 CREATE TABLE `auth_user_user_permissions` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `django_admin_log`
+-- Table structure for table `django_admin_log`
 --
 
 CREATE TABLE `django_admin_log` (
   `id` int(11) NOT NULL,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext,
+  `object_id` longtext DEFAULT NULL,
   `object_repr` varchar(200) NOT NULL,
-  `action_flag` smallint(5) UNSIGNED NOT NULL,
+  `action_flag` smallint(5) UNSIGNED NOT NULL CHECK (`action_flag` >= 0),
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `django_content_type`
+-- Table structure for table `django_content_type`
 --
 
 CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `django_content_type`
+-- Dumping data for table `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
@@ -221,6 +228,8 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (4, 'auth', 'user'),
 (5, 'contenttypes', 'contenttype'),
 (8, 'home', 'data'),
+(13, 'home', 'datatesting'),
+(12, 'home', 'trainingdecissiontree'),
 (10, 'home', 'trainingnaivebayes'),
 (9, 'home', 'trainingsvmseq'),
 (11, 'home', 'trainingsvmsmo'),
@@ -229,7 +238,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `django_migrations`
+-- Table structure for table `django_migrations`
 --
 
 CREATE TABLE `django_migrations` (
@@ -237,95 +246,91 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `django_migrations`
+-- Dumping data for table `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2020-05-15 21:18:29.123111'),
-(2, 'auth', '0001_initial', '2020-05-15 21:18:29.453756'),
-(3, 'account', '0001_initial', '2020-05-15 21:18:30.505766'),
-(4, 'account', '0002_profile_username', '2020-05-15 21:18:30.700125'),
-(5, 'admin', '0001_initial', '2020-05-15 21:18:31.224895'),
-(6, 'admin', '0002_logentry_remove_auto_add', '2020-05-15 21:18:31.411330'),
-(7, 'admin', '0003_logentry_add_action_flag_choices', '2020-05-15 21:18:31.420305'),
-(8, 'contenttypes', '0002_remove_content_type_name', '2020-05-15 21:18:31.555776'),
-(9, 'auth', '0002_alter_permission_name_max_length', '2020-05-15 21:18:31.647167'),
-(10, 'auth', '0003_alter_user_email_max_length', '2020-05-15 21:18:31.985784'),
-(11, 'auth', '0004_alter_user_username_opts', '2020-05-15 21:18:31.996774'),
-(12, 'auth', '0005_alter_user_last_login_null', '2020-05-15 21:18:32.058098'),
-(13, 'auth', '0006_require_contenttypes_0002', '2020-05-15 21:18:32.063194'),
-(14, 'auth', '0007_alter_validators_add_error_messages', '2020-05-15 21:18:32.073247'),
-(15, 'auth', '0008_alter_user_username_max_length', '2020-05-15 21:18:32.165648'),
-(16, 'auth', '0009_alter_user_last_name_max_length', '2020-05-15 21:18:32.258007'),
-(17, 'auth', '0010_alter_group_name_max_length', '2020-05-15 21:18:32.356800'),
-(18, 'auth', '0011_update_proxy_permissions', '2020-05-15 21:18:32.367838'),
-(19, 'home', '0001_initial', '2020-05-15 21:18:32.483490'),
-(20, 'sessions', '0001_initial', '2020-05-15 21:18:32.569942'),
-(21, 'home', '0002_trainingnaivebayes', '2020-05-15 23:02:37.888411'),
-(22, 'home', '0003_trainingsvmsmo', '2020-06-05 19:25:28.479117'),
-(23, 'home', '0004_trainingsvmsmo_epsilon', '2020-06-06 08:19:40.617590');
+(1, 'contenttypes', '0001_initial', '2020-07-13 13:34:45.928989'),
+(2, 'auth', '0001_initial', '2020-07-13 13:34:48.478738'),
+(3, 'account', '0001_initial', '2020-07-13 13:34:58.939248'),
+(4, 'account', '0002_profile_username', '2020-07-13 13:35:00.268379'),
+(5, 'admin', '0001_initial', '2020-07-13 13:35:01.317359'),
+(6, 'admin', '0002_logentry_remove_auto_add', '2020-07-13 13:35:04.080321'),
+(7, 'admin', '0003_logentry_add_action_flag_choices', '2020-07-13 13:35:04.155066'),
+(8, 'contenttypes', '0002_remove_content_type_name', '2020-07-13 13:35:06.513630'),
+(9, 'auth', '0002_alter_permission_name_max_length', '2020-07-13 13:35:07.794148'),
+(10, 'auth', '0003_alter_user_email_max_length', '2020-07-13 13:35:08.094305'),
+(11, 'auth', '0004_alter_user_username_opts', '2020-07-13 13:35:08.211735'),
+(12, 'auth', '0005_alter_user_last_login_null', '2020-07-13 13:35:09.136139'),
+(13, 'auth', '0006_require_contenttypes_0002', '2020-07-13 13:35:09.181501'),
+(14, 'auth', '0007_alter_validators_add_error_messages', '2020-07-13 13:35:09.431643'),
+(15, 'auth', '0008_alter_user_username_max_length', '2020-07-13 13:35:09.643850'),
+(16, 'auth', '0009_alter_user_last_name_max_length', '2020-07-13 13:35:09.943636'),
+(17, 'auth', '0010_alter_group_name_max_length', '2020-07-13 13:35:10.203946'),
+(18, 'auth', '0011_update_proxy_permissions', '2020-07-13 13:35:10.358908'),
+(19, 'home', '0001_initial', '2020-07-13 13:35:11.188256'),
+(20, 'home', '0002_trainingnaivebayes', '2020-07-13 13:35:11.739003'),
+(21, 'home', '0003_trainingsvmsmo', '2020-07-13 13:35:12.161632'),
+(22, 'home', '0004_trainingsvmsmo_epsilon', '2020-07-13 13:35:12.509476'),
+(23, 'home', '0005_trainingdecissiontree', '2020-07-13 13:35:12.864531'),
+(24, 'home', '0006_auto_20200627_2212', '2020-07-13 13:35:13.173059'),
+(25, 'home', '0007_datatesting', '2020-07-13 13:35:14.190826'),
+(26, 'sessions', '0001_initial', '2020-07-13 13:35:14.694033');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `django_session`
+-- Table structure for table `django_session`
 --
 
 CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `django_session`
+-- Dumping data for table `django_session`
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('21aoajqzko1jt4p6yc8l4xrbkgagn9ei', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-12 14:24:14.901926'),
-('4hrlx33v81p95t2kpr6vgv59i0j9wxyu', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-26 10:39:59.354123'),
-('6t7u81gmczc9uvkwlisqr3yejau310xe', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-05-29 22:27:28.353955'),
-('9sawqnkt7rmfxnuj1lrlfr12sirwzufx', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-14 11:53:03.551502'),
-('dt7ka36lrwapp0jy7437yx249b75jij6', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-19 19:18:14.130255'),
-('g3p8zlwju0qqm33ae3n8qia3nbm6ggvx', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-19 11:49:01.508139'),
-('itk9jr848ragymikh18dpbgjfkqv26e8', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-05-30 12:19:14.140986'),
-('k9hjfbv3kalznf6bj1e9qvgowx5jr9d9', 'YWZmZjAwMjk1ZWI4ZWMwYmE4ZWVkYjYyYTBiZGIyZGIyM2YxYzQ4Nzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMzAwYTJlNDJlNDY5OThlNjdhYjJiOWQ2YzJhYmY0NDhlOTMyYjRmIiwidXNlcm5hbWUiOiJxIn0=', '2020-06-20 07:58:34.619783');
+('1np0o21mlm2j4d4ud4348buckkte6ji1', 'MjQxZmQ3OTdmNGFmYTFhYTU2NmMxZjZmNTA4ZGYzY2JkNWFkZWNmZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkNDAzMmE0ZmQ5NGM2OGNiYzU2YjExYWQ5NjU3NTllNDVkMWVhOWU2IiwidXNlcm5hbWUiOiJhZG1pbiJ9', '2020-08-29 07:23:08.040336'),
+('kof6za6jhjsd7qvvw3xo3tdkr9ooo5lx', 'MjQxZmQ3OTdmNGFmYTFhYTU2NmMxZjZmNTA4ZGYzY2JkNWFkZWNmZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkNDAzMmE0ZmQ5NGM2OGNiYzU2YjExYWQ5NjU3NTllNDVkMWVhOWU2IiwidXNlcm5hbWUiOiJhZG1pbiJ9', '2020-07-27 13:41:45.241219'),
+('xfujp1mhbsi5y3xctb51wuwifzh13x56', 'Mzg3ZWZiNDBlMmJjMzM3ZjE4ZDExZjdhN2M2Zjg4MmFiYjA1N2ZhNDp7fQ==', '2020-07-27 13:41:01.308834');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `home_data`
+-- Table structure for table `home_data`
 --
 
 CREATE TABLE `home_data` (
-  `id` int(50) NOT NULL,
-  `semester_mulai` varchar(20) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `semester_mulai` varchar(10) DEFAULT NULL,
   `kode_prodi` varchar(20) DEFAULT NULL,
   `tahun_smstr` varchar(20) DEFAULT NULL,
-  `nama_prodi` varchar(150) DEFAULT NULL,
-  `peminat_prodi` varchar(100) DEFAULT NULL,
-  `rerata_ipk` varchar(100) DEFAULT NULL,
-  `kelulusan` varchar(100) DEFAULT NULL,
-  `jam_kehadiran_dosen` varchar(100) DEFAULT NULL,
-  `rerata_nilai_dosen` varchar(100) DEFAULT NULL,
-  `label_kelas` varchar(50) DEFAULT NULL,
+  `nama_prodi` varchar(255) DEFAULT NULL,
+  `peminat_prodi` varchar(50) DEFAULT NULL,
+  `rerata_ipk` varchar(50) DEFAULT NULL,
+  `kelulusan` varchar(50) DEFAULT NULL,
+  `jam_kehadiran_dosen` varchar(50) DEFAULT NULL,
+  `rerata_nilai_dosen` varchar(50) DEFAULT NULL,
+  `label_kelas` varchar(30) DEFAULT NULL,
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `home_data`
+-- Dumping data for table `home_data`
 --
 
 INSERT INTO `home_data` (`id`, `semester_mulai`, `kode_prodi`, `tahun_smstr`, `nama_prodi`, `peminat_prodi`, `rerata_ipk`, `kelulusan`, `jam_kehadiran_dosen`, `rerata_nilai_dosen`, `label_kelas`, `created_at`) VALUES
 (1, '20021', '61201', '2014', 'S1_MANAJEMEN_2014', '2.208', '2.3483', '64', '13.7345', '3.282566', 'Berkembang', '2020-05-01 03:41:53.124746'),
-(2, '20021', '61201', '2015', 'S1_MANAJEMEN_2015', '2.476', '2.995', '95', '14.9231', '3.227462', 'Berkembang', '2020-05-01 03:41:53.124746'),
 (3, '20021', '61201', '2016', 'S1_MANAJEMEN_2016', '0', '3.098', '121', '3.4486', '3.360421', 'Berkembang', '2020-05-01 03:41:53.124746'),
 (4, '20021', '61201', '2017', 'S1_MANAJEMEN_2017', '0', '3.111', '193', '3.0061', '3.375515', 'Berkembang', '2020-05-01 03:41:53.124746'),
 (5, '20021', '61201', '2018', 'S1_MANAJEMEN_2018', '0', '3.264', '239', '3.4973', '3.396885', 'Berkembang', '2020-05-01 03:41:53.124746'),
-(6, '20021', '61201', '2019', 'S1_MANAJEMEN_2019', '0', '0', '368', '0', '0', 'Belum Berkembang', '2020-05-01 03:41:53.124746'),
 (7, '20021', '46201', '2014', 'S1_BIOLOGI_2014', '0.46', '2.457', '14', '15.1509', '2.1226', 'Berkembang', '2020-05-01 03:41:53.124746'),
 (8, '20021', '46201', '2015', 'S1_BIOLOGI_2015', '1.05', '2.486', '7', '15.0969', '3.3875', 'Berkembang', '2020-05-01 03:41:53.124746'),
 (9, '20021', '46201', '2016', 'S1_BIOLOGI_2016', '0', '5.596', '13', '15.5224', '3.35059', 'Berkembang', '2020-05-01 03:41:53.124746'),
@@ -498,16 +503,63 @@ INSERT INTO `home_data` (`id`, `semester_mulai`, `kode_prodi`, `tahun_smstr`, `n
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `home_trainingnaivebayes`
+-- Table structure for table `home_datatesting`
+--
+
+CREATE TABLE `home_datatesting` (
+  `id` int(11) NOT NULL,
+  `semester_mulai` varchar(10) DEFAULT NULL,
+  `kode_prodi` varchar(20) DEFAULT NULL,
+  `tahun_smstr` varchar(20) DEFAULT NULL,
+  `nama_prodi` varchar(255) DEFAULT NULL,
+  `peminat_prodi` varchar(50) DEFAULT NULL,
+  `rerata_ipk` varchar(50) DEFAULT NULL,
+  `kelulusan` varchar(50) DEFAULT NULL,
+  `jam_kehadiran_dosen` varchar(50) DEFAULT NULL,
+  `rerata_nilai_dosen` varchar(50) DEFAULT NULL,
+  `label_kelas` varchar(30) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `home_datatesting`
+--
+
+INSERT INTO `home_datatesting` (`id`, `semester_mulai`, `kode_prodi`, `tahun_smstr`, `nama_prodi`, `peminat_prodi`, `rerata_ipk`, `kelulusan`, `jam_kehadiran_dosen`, `rerata_nilai_dosen`, `label_kelas`, `created_at`) VALUES
+(23, '20161', '61201', '2016', 'S1_PETERNAKAN_2016', '1', '2.481', '35', '16', '3.266', 'Berkembang', '2020-07-14 01:07:50.799981'),
+(24, '20151', '61202', '2015', 'S2_PENDIDIKAN AGAMA ISLAM_2015', '0.3', '0', '24', '13.6', '3.274', 'Belum Berkembang', '2020-07-14 01:14:24.622365');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_trainingdecissiontree`
+--
+
+CREATE TABLE `home_trainingdecissiontree` (
+  `id` int(11) NOT NULL,
+  `k_fold` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `home_trainingdecissiontree`
+--
+
+INSERT INTO `home_trainingdecissiontree` (`id`, `k_fold`) VALUES
+(1, '5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_trainingnaivebayes`
 --
 
 CREATE TABLE `home_trainingnaivebayes` (
   `id` int(11) NOT NULL,
   `k_fold` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `home_trainingnaivebayes`
+-- Dumping data for table `home_trainingnaivebayes`
 --
 
 INSERT INTO `home_trainingnaivebayes` (`id`, `k_fold`) VALUES
@@ -516,30 +568,28 @@ INSERT INTO `home_trainingnaivebayes` (`id`, `k_fold`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `home_trainingsvmseq`
+-- Table structure for table `home_trainingsvmseq`
 --
 
 CREATE TABLE `home_trainingsvmseq` (
   `id` int(11) NOT NULL,
-  `lamda` varchar(100) DEFAULT NULL,
-  `sigma` varchar(100) DEFAULT NULL,
   `constant` varchar(100) DEFAULT NULL,
   `gamma` varchar(100) DEFAULT NULL,
   `iterasi` varchar(100) DEFAULT NULL,
   `k_fold` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `home_trainingsvmseq`
+-- Dumping data for table `home_trainingsvmseq`
 --
 
-INSERT INTO `home_trainingsvmseq` (`id`, `lamda`, `sigma`, `constant`, `gamma`, `iterasi`, `k_fold`) VALUES
-(1, NULL, NULL, '1.0', '0.01', '100', '7');
+INSERT INTO `home_trainingsvmseq` (`id`, `constant`, `gamma`, `iterasi`, `k_fold`) VALUES
+(1, '1.0', '1.0', '10', '5');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `home_trainingsvmsmo`
+-- Table structure for table `home_trainingsvmsmo`
 --
 
 CREATE TABLE `home_trainingsvmsmo` (
@@ -548,35 +598,35 @@ CREATE TABLE `home_trainingsvmsmo` (
   `iterasi` varchar(100) DEFAULT NULL,
   `k_fold` varchar(100) DEFAULT NULL,
   `epsilon` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `home_trainingsvmsmo`
+-- Dumping data for table `home_trainingsvmsmo`
 --
 
 INSERT INTO `home_trainingsvmsmo` (`id`, `constant`, `iterasi`, `k_fold`, `epsilon`) VALUES
-(1, '1.0', '1000', '5', '0.0001');
+(1, '10.0', NULL, '5', '0.7');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `account_profile`
+-- Indexes for table `account_profile`
 --
 ALTER TABLE `account_profile`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `auth_group`
+-- Indexes for table `auth_group`
 --
 ALTER TABLE `auth_group`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indeks untuk tabel `auth_group_permissions`
+-- Indexes for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD PRIMARY KEY (`id`),
@@ -584,21 +634,21 @@ ALTER TABLE `auth_group_permissions`
   ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
 
 --
--- Indeks untuk tabel `auth_permission`
+-- Indexes for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
 
 --
--- Indeks untuk tabel `auth_user`
+-- Indexes for table `auth_user`
 --
 ALTER TABLE `auth_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `auth_user_groups`
+-- Indexes for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   ADD PRIMARY KEY (`id`),
@@ -606,7 +656,7 @@ ALTER TABLE `auth_user_groups`
   ADD KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`);
 
 --
--- Indeks untuk tabel `auth_user_user_permissions`
+-- Indexes for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   ADD PRIMARY KEY (`id`),
@@ -614,7 +664,7 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
--- Indeks untuk tabel `django_admin_log`
+-- Indexes for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD PRIMARY KEY (`id`),
@@ -622,158 +672,176 @@ ALTER TABLE `django_admin_log`
   ADD KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `django_content_type`
+-- Indexes for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
 
 --
--- Indeks untuk tabel `django_migrations`
+-- Indexes for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `django_session`
+-- Indexes for table `django_session`
 --
 ALTER TABLE `django_session`
   ADD PRIMARY KEY (`session_key`),
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indeks untuk tabel `home_data`
+-- Indexes for table `home_data`
 --
 ALTER TABLE `home_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `home_trainingnaivebayes`
+-- Indexes for table `home_datatesting`
+--
+ALTER TABLE `home_datatesting`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `home_trainingdecissiontree`
+--
+ALTER TABLE `home_trainingdecissiontree`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `home_trainingnaivebayes`
 --
 ALTER TABLE `home_trainingnaivebayes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `home_trainingsvmseq`
+-- Indexes for table `home_trainingsvmseq`
 --
 ALTER TABLE `home_trainingsvmseq`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `home_trainingsvmsmo`
+-- Indexes for table `home_trainingsvmsmo`
 --
 ALTER TABLE `home_trainingsvmsmo`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `account_profile`
+-- AUTO_INCREMENT for table `account_profile`
 --
 ALTER TABLE `account_profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_group`
+-- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_group_permissions`
+-- AUTO_INCREMENT for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_permission`
+-- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_user`
+-- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_user_groups`
+-- AUTO_INCREMENT for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `auth_user_user_permissions`
+-- AUTO_INCREMENT for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `django_admin_log`
+-- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `django_content_type`
+-- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `django_migrations`
+-- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT untuk tabel `home_data`
+-- AUTO_INCREMENT for table `home_data`
 --
 ALTER TABLE `home_data`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for table `home_datatesting`
+--
+ALTER TABLE `home_datatesting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `account_profile`
+-- Constraints for table `account_profile`
 --
 ALTER TABLE `account_profile`
   ADD CONSTRAINT `account_profile_user_id_bdd52018_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `auth_group_permissions`
+-- Constraints for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `auth_permission`
+-- Constraints for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `auth_user_groups`
+-- Constraints for table `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `auth_user_user_permissions`
+-- Constraints for table `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `django_admin_log`
+-- Constraints for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),

@@ -1,6 +1,6 @@
 asgiref==3.2.3
 chefboost==0.0.6
-Django==3.0.4
+Django==3.0.12
 django-widget-tweaks==1.4.5
 et-xmlfile==1.0.1
 jdcal==1.4.1
